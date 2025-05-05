@@ -1,0 +1,82 @@
+// src/components/LoveLetter.jsx
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+
+export const LoveLetter = () => {
+  const [message, setMessage] = useState('');
+  const [savedMessage, setSavedMessage] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/messages').then((res) => {
+      if (res.data.length > 0) {
+        setSavedMessage(res.data[res.data.length - 1].content);
+      }
+    });
+  }, [isSubmitted]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post('http://localhost:5000/api/messages', { content: message });
+    setIsSubmitted(true);
+    setMessage('');
+  };
+
+  const playAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+
+  return (
+    <div className="max-w-3xl mx-auto p-6 my-12 bg-white rounded-2xl shadow-lg relative overflow-hidden">
+      <audio ref={audioRef} src="/romantic-background.mp3" loop />
+      <button
+        onClick={playAudio}
+        className="absolute top-4 right-4 bg-pink-200 text-pink-800 px-3 py-1 rounded-full shadow hover:bg-pink-300 transition"
+      >
+        🎶 Play Music
+      </button>
+      <h2 className="text-3xl font-cursive text-pink-600 mb-4 text-center animate-fade-in">💌 Love Letter</h2>
+      <div className="absolute inset-0 pointer-events-none animate-floating-hearts" />
+
+      {savedMessage && (
+        <div className="whitespace-pre-wrap italic text-lg bg-pink-50 p-4 rounded-lg border border-pink-200 mb-6">
+          {savedMessage}
+        </div>
+      )}
+
+      {!savedMessage && (
+        <div className="whitespace-pre-wrap italic text-lg bg-pink-50 p-4 rounded-lg border border-pink-200 mb-6">
+          To My Dearest Love 💖,
+
+          Happy Birthday, my heart, my soulmate, my forever! On this beautiful day, I just want to say how deeply I adore you. Every moment with you has been a gift, and I thank the stars every night for blessing me with a husband like you.
+
+          I cherish our memories, our laughter, our silly moments, and the quiet times we share. Your strength, your kindness, your smile—they mean the world to me. You are not just the love of my life, you're my best friend, my safe place, and the most amazing man I've ever known.
+
+          I hope this surprise brings a smile to your face and warmth to your heart. Today and always, I love you more than words can express.
+
+          With all my love,
+          — Rimsha 💕
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Write your heartfelt message here..."
+          className="w-full p-4 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+          rows={6}
+        ></textarea>
+        <button
+          type="submit"
+          className="bg-pink-500 hover:bg-pink-600 text-white py-2 px-6 rounded-full transition"
+        >
+          Save My Love Note
+        </button>
+      </form>
+    </div>
+  );
+};

@@ -1,82 +1,119 @@
-// src/components/LoveLetter.jsx
-import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
-
-export const LoveLetter = () => {
-  const [message, setMessage] = useState('');
-  const [savedMessage, setSavedMessage] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/messages').then((res) => {
-      if (res.data.length > 0) {
-        setSavedMessage(res.data[res.data.length - 1].content);
-      }
-    });
-  }, [isSubmitted]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await axios.post('http://localhost:5000/api/messages', { content: message });
-    setIsSubmitted(true);
-    setMessage('');
-  };
-
-  const playAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.play();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Love</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      color: #333;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
     }
-  };
+    header {
+      padding: 50px 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-bottom: 2px solid #f8a5c2;
+      animation: slideIn 1s ease-in;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #e84393;
+    }
+    p {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin: 20px auto;
+    }
+    .poem {
+      font-style: italic;
+      color: #6c5ce7;
+      font-size: 1.2rem;
+      margin: 30px 0;
+      animation: fadeIn 2s ease-in;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 2s ease-in;
+    }
+    footer {
+      padding: 20px;
+      font-size: 1rem;
+      color: #555;
+    }
+    .love-letter {
+      font-size: 1.5rem;
+      color: #6c5ce7;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: type 4s steps(50) 1s forwards;
+      margin: 30px auto;
+    }
 
-  return (
-    <div className="max-w-3xl mx-auto p-6 my-12 bg-white rounded-2xl shadow-lg relative overflow-hidden">
-      <audio ref={audioRef} src="/romantic-background.mp3" loop />
-      <button
-        onClick={playAudio}
-        className="absolute top-4 right-4 bg-pink-200 text-pink-800 px-3 py-1 rounded-full shadow hover:bg-pink-300 transition"
-      >
-        🎶 Play Music
-      </button>
-      <h2 className="text-3xl font-cursive text-pink-600 mb-4 text-center animate-fade-in">💌 Love Letter</h2>
-      <div className="absolute inset-0 pointer-events-none animate-floating-hearts" />
+    /* Animation Effects */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes type {
+      to {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Happy Birthday, Rimsha! ❤️</h1>
+    <p id="greeting">Every moment with you is a blessing. On your special day, I just want to remind you how deeply I love you. Thank you for being you — kind, beautiful, strong, and the love of my life.</p>
+  </header>
 
-      {savedMessage && (
-        <div className="whitespace-pre-wrap italic text-lg bg-pink-50 p-4 rounded-lg border border-pink-200 mb-6">
-          {savedMessage}
-        </div>
-      )}
+  <section class="poem">
+    <p>"In your eyes, I see my home,</p>
+    <p>In your heart, I find my peace,</p>
+    <p>With every smile, my world feels bright,</p>
+    <p>And in your love, I find my light."</p>
+  </section>
 
-      {!savedMessage && (
-        <div className="whitespace-pre-wrap italic text-lg bg-pink-50 p-4 rounded-lg border border-pink-200 mb-6">
-          To My Dearest Love 💖,
+  <section class="love-letter">
+    <p>To the love of my life, you are everything to me. I cherish every moment we've shared, and I can't wait to create more memories with you. I love you more than words can say. 💖</p>
+  </section>
 
-          Happy Birthday, my heart, my soulmate, my forever! On this beautiful day, I just want to say how deeply I adore you. Every moment with you has been a gift, and I thank the stars every night for blessing me with a husband like you.
+  <section class="gallery">
+    <img src="https://via.placeholder.com/200" alt="Memory 1">
+    <img src="https://via.placeholder.com/200" alt="Memory 2">
+    <img src="https://via.placeholder.com/200" alt="Memory 3">
+    <img src="https://via.placeholder.com/200" alt="Memory 4">
+  </section>
 
-          I cherish our memories, our laughter, our silly moments, and the quiet times we share. Your strength, your kindness, your smile—they mean the world to me. You are not just the love of my life, you're my best friend, my safe place, and the most amazing man I've ever known.
+  <footer>
+    <p>Forever yours,</p>
+    <p><strong>[Your Name]</strong></p>
+  </footer>
 
-          I hope this surprise brings a smile to your face and warmth to your heart. Today and always, I love you more than words can express.
-
-          With all my love,
-          — Rimsha 💕
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Write your heartfelt message here..."
-          className="w-full p-4 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-          rows={6}
-        ></textarea>
-        <button
-          type="submit"
-          className="bg-pink-500 hover:bg-pink-600 text-white py-2 px-6 rounded-full transition"
-        >
-          Save My Love Note
-        </button>
-      </form>
-    </div>
-  );
-};
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-lovely.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>

@@ -1,378 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Happy Birthday My Wife</title>
-<style>
-  /* Reset and base */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  body, html {
-    height: 100%;
-    font-family: 'Georgia', serif;
-    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-    color: #5c1a33;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  .container {
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 25px;
-    padding: 35px 30px 60px 30px;
-    width: 100%;
-    max-width: 350px;
-    height: 600px;
-    box-shadow: 0 0 40px rgba(255, 192, 203, 0.6);
-    position: relative;
-    text-align: center;
-    user-select: none;
-  }
-  h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3rem;
-    font-weight: 900;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 8px rgba(188, 50, 86, 0.6);
-    color: #a91b48;
-    letter-spacing: 1.5px;
-  }
-  h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #d94e71;
-    margin-bottom: 40px;
-    text-shadow: 1px 1px 6px rgba(188, 50, 86, 0.4);
-  }
-  p.message {
-    font-size: 1.15rem;
-    color: #7a2c44;
-    line-height: 1.5;
-    margin-bottom: 45px;
-    padding: 0 10px;
-    user-select: text;
-  }
-  /* Floating hearts container and hearts */
-  .hearts-container {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    width: 280px;
-    height: 300px;
-    transform: translateX(-50%);
-    pointer-events: none;
-    overflow: visible;
-  }
-  .heart {
-    position: absolute;
-    bottom: 0;
-    width: 30px;
-    height: 27px;
-    background: #d94e71;
-    clip-path: polygon(
-      50% 0%,
-      61% 9%,
-      68% 18%,
-      75% 27%,
-      84% 37%,
-      89% 48%,
-      92% 63%,
-      91% 86%,
-      65% 100%,
-      50% 90%,
-      35% 100%,
-      9% 86%,
-      8% 63%,
-      11% 48%,
-      16% 37%,
-      25% 27%,
-      32% 18%,
-      39% 9%
-    );
-    filter: drop-shadow(0 0 5px #da6d9e);
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-  }
-  .heart::after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: #f8bbd0;
-    border-radius: 50%;
-    top: 3px;
-    left: 8px;
-  }
-  .heart::before {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: #f8bbd0;
-    border-radius: 50%;
-    top: 3px;
-    right: 8px;
-  }
-
-  /* Heart colors */
-  .heart:nth-child(1) {
-    left: 5%;
-    animation: floatHeart1 6s infinite;
-  }
-  .heart:nth-child(2) {
-    left: 25%;
-    animation: floatHeart2 5.5s infinite;
-    background: #f48fb1;
-    filter: drop-shadow(0 0 5px #f06292);
-  }
-  .heart:nth-child(3) {
-    left: 50%;
-    animation: floatHeart2 6.2s infinite;
-  }
-  .heart:nth-child(4) {
-    left: 70%;
-    animation: floatHeart1 5.8s infinite;
-    background: #f06292;
-    filter: drop-shadow(0 0 5px #ec407a);
-  }
-  .heart:nth-child(5) {
-    left: 85%;
-    animation: floatHeart1 6.4s infinite;
-  }
-
-  @keyframes floatHeart1 {
-    0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
-    50% { transform: translateY(-35px) translateX(7px) scale(1.1); opacity: 0.8; }
-  }
-  @keyframes floatHeart2 {
-    0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
-    50% { transform: translateY(-30px) translateX(-6px) scale(1.1); opacity: 0.85; }
-  }
-
-  button.btn-play {
-    background: #a91b48;
-    color: white;
-    border: none;
-    padding: 14px 32px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(169, 27, 72, 0.6);
-    transition: background 0.3s, color 0.3s;
-    user-select: none;
-  }
-  button.btn-play:hover,
-  button.btn-play:focus {
-    background: #d94e71;
-    outline: none;
-  }
-
-  /* Confetti canvas */
-  #confettiCanvas {
-    position: absolute;
-    pointer-events: none;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 25px;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 350px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Rimsha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffccd5, #ffe6f0);
+      overflow-x: hidden;
+    }
     .container {
-      padding: 25px 20px 50px 20px;
-      width: 100%;
-      max-width: 350px;
-      height: 600px;
+      text-align: center;
+      padding: 50px 20px;
     }
     h1 {
-      font-size: 2.4rem;
-      letter-spacing: 1px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #a91b48;
     }
     h2 {
-      font-size: 1.65rem;
-      margin-bottom: 30px;
+      color: #7a2c44;
+      font-size: 2rem;
     }
-    p.message {
-      font-size: 1.05rem;
-      margin-bottom: 35px;
+    .message {
+      margin: 20px auto;
+      font-size: 1.1rem;
+      max-width: 600px;
+      color: #5a1f34;
     }
-    button.btn-play {
+    ul.reasons {
+      list-style: none;
+      margin: 0 auto 30px auto;
+      padding: 0 10px;
+      max-height: 100px;
+      overflow-y: auto;
+      text-align: left;
       font-size: 1rem;
-      padding: 12px 26px;
+      color: #7a2c44;
     }
-    .hearts-container {
-      width: 240px;
-      height: 250px;
-      bottom: 20px;
+    ul.reasons li {
+      margin-bottom: 8px;
+      padding-left: 1em;
+      text-indent: -1em;
     }
-    .heart {
-      width: 25px;
-      height: 22px;
+    ul.reasons li::before {
+      content: "❤️ ";
+      padding-right: 4px;
     }
-  }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    p.quote {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #a91b48;
+      padding: 0 10px;
+    }
+    #sparkleCanvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(169, 27, 72, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      color: #7a2c44;
+      font-size: 1.1rem;
+    }
+    .modal-content button {
+      margin-top: 15px;
+      padding: 8px 20px;
+      border: none;
+      background: #a91b48;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .modal-content button:hover {
+      background: #d94e71;
+    }
+  </style>
 </head>
 <body>
-  <div class="container" role="main" aria-label="Birthday greeting for my wife">
-    <h1>Happy Birthday</h1>
-    <h2>My Wife ❤️</h2>
-    <p class="message" aria-label="Heartfelt Birthday Message">
-      May your day be filled with endless love, joy, and beautiful memories. You mean the world to me, today and every day.
-    </p>
-    <button class="btn-play" id="playMusicBtn" aria-label="Play romantic birthday song">Play Birthday Song 🎵</button>
+  <div class="container">
+    <h1>Happy Birthday Rimsha ❤️</h1>
+    <h2>Rimsha ❤️</h2>
+    <p class="message">Today is all about you, the light of my life and the reason for my smile. Happy Birthday my love!</p>
 
-    <div class="hearts-container" aria-hidden="true">
-      <div class="heart"></div>
-      <div class="heart"></div>
-      <div class="heart"></div>
-      <div class="heart"></div>
-      <div class="heart"></div>
-    </div>
+    <ul class="reasons" aria-label="Reasons I Love Rimsha">
+      <li>Your smile lights up my world.</li>
+      <li>You make every moment magical.</li>
+      <li>Your love makes me stronger.</li>
+      <li>You care so deeply, so kindly.</li>
+      <li>You’re my greatest blessing.</li>
+    </ul>
 
-    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    <p id="quote" class="quote" aria-label="Romantic quote for Rimsha"></p>
   </div>
 
+  <div id="surpriseModal" class="modal" role="dialog" aria-label="Surprise love message">
+    <div class="modal-content">
+      <p>Rimsha, every moment with you is a precious gift. You are my forever and always. 💖</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <canvas id="sparkleCanvas" aria-hidden="true"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // Confetti Animation (same as previous but with softer colors)
-    const canvas = document.getElementById('confettiCanvas');
-    const ctx = canvas.getContext('2d');
-    let W, H;
-    function resizeCanvas() {
-      W = canvas.width = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    const confettiCount = 70;
-    const confetti = [];
-
-    function randomRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    class Confetto {
-      constructor() {
-        this.x = randomRange(0, W);
-        this.y = randomRange(-H, 0);
-        this.r = randomRange(5, 9);
-        this.d = randomRange(10, 25);
-        this.color = `hsl(${randomRange(330, 350)}, 80%, 75%)`; // soft pinkish tones
-        this.tilt = randomRange(-10, 10);
-        this.tiltAngle = 0;
-        this.tiltAngleIncrement = randomRange(0.04, 0.1);
-        this.speedY = randomRange(1, 2.5);
-        this.speedX = randomRange(-0.5, 0.5);
-      }
-      update() {
-        this.y += this.speedY;
-        this.x += this.speedX;
-        this.tiltAngle += this.tiltAngleIncrement;
-        this.tilt = Math.sin(this.tiltAngle) * 12;
-
-        if (this.y > H) {
-          this.y = randomRange(-20, 0);
-          this.x = randomRange(0, W);
-        }
-        if (this.x > W) this.x = 0;
-        else if (this.x < 0) this.x = W;
-      }
-      draw(ctx) {
-        ctx.beginPath();
-        ctx.lineWidth = this.r / 2;
-        ctx.strokeStyle = this.color;
-        ctx.moveTo(this.x + this.tilt + this.r / 2, this.y);
-        ctx.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 2);
-        ctx.stroke();
-      }
-    }
-
-    function initConfetti() {
-      for (let i = 0; i < confettiCount; i++) {
-        confetti.push(new Confetto());
-      }
-    }
-
-    function drawConfetti() {
-      ctx.clearRect(0, 0, W, H);
-      confetti.forEach(c => {
-        c.update();
-        c.draw(ctx);
-      });
-      requestAnimationFrame(drawConfetti);
-    }
-
-    initConfetti();
-    drawConfetti();
-
-    // Play gentle romantic melody using Web Audio API on button press
-    const btn = document.getElementById('playMusicBtn');
-    let audioPlaying = false;
-
-    const context = new (window.AudioContext || window.webkitAudioContext)();
-
-    // Simple romantic melody notes (soft piano style frequencies)
-    const notes = [
-      { freq: 440, dur: 0.5 }, // A4
-      { freq: 493.88, dur: 0.5 }, // B4
-      { freq: 523.25, dur: 1.0 }, // C5
-      { freq: 493.88, dur: 0.5 }, // B4
-      { freq: 440, dur: 0.5 }, // A4
-      { freq: 392, dur: 1.3 }, // G4
-      { freq: 349.23, dur: 0.5 }, // F4
-      { freq: 392, dur: 0.5 }, // G4
-      { freq: 440, dur: 1.2 }, // A4
-      { freq: 391.99, dur: 1.5 }, // G4
-    ];
-
-    function playTone(freq, duration, when) {
-      const osc = context.createOscillator();
-      const gainNode = context.createGain();
-      osc.frequency.value = freq;
-      osc.type = 'triangle';
-      osc.connect(gainNode);
-      gainNode.connect(context.destination);
-      osc.start(when);
-      gainNode.gain.setValueAtTime(0.25, when);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, when + duration);
-      osc.stop(when + duration);
-    }
-
-    function playMelody() {
-      let startTime = context.currentTime + 0.1;
-      notes.forEach(({ freq, dur }, i) => {
-        playTone(freq, dur, startTime);
-        startTime += dur;
-      });
-    }
-
-    btn.addEventListener('click', () => {
-      if (!audioPlaying) {
-        if (context.state === 'suspended') {
-          context.resume();
-        }
-        playMelody();
-        audioPlaying = true;
-        btn.textContent = 'Playing... 🎵';
-        btn.disabled = true;
-        setTimeout(() => {
-          audioPlaying = false;
-          btn.textContent = 'Play Birthday Song 🎵';
-          btn.disabled = false;
-        }, 7000);
-      }
+    // Confetti
+    confetti({
+      particleCount: 150,
+      spread: 120,
+      origin: { y: 0.6 }
     });
+
+    // Random Love Quotes
+    const quotes = [
+      "Every love story is beautiful, but ours is my favorite.",
+      "I still fall for you every single day.",
+      "You are my today and all of my tomorrows.",
+      "In you, I’ve found the love of my life and my closest friend.",
+      "My heart is perfect because you are inside."
+    ];
+    const quoteElem = document.getElementById('quote');
+    quoteElem.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+    // Sparkle Effect
+    const sparkleCanvas = document.getElementById('sparkleCanvas');
+    const sparkleCtx = sparkleCanvas.getContext('2d');
+    let sparkleW, sparkleH;
+    function resizeSparkleCanvas() {
+      sparkleW = sparkleCanvas.width = window.innerWidth;
+      sparkleH = sparkleCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeSparkleCanvas);
+    resizeSparkleCanvas();
+
+    let sparkles = [];
+    for (let i = 0; i < 60; i++) {
+      sparkles.push({
+        x: Math.random() * sparkleW,
+        y: Math.random() * sparkleH,
+        r: Math.random() * 1.2 + 0.5,
+        alpha: Math.random(),
+        dAlpha: Math.random() * 0.02 + 0.01
+      });
+    }
+
+    function drawSparkles() {
+      sparkleCtx.clearRect(0, 0, sparkleW, sparkleH);
+      sparkles.forEach(s => {
+        sparkleCtx.beginPath();
+        sparkleCtx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+        sparkleCtx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+        sparkleCtx.fill();
+        s.alpha += s.dAlpha;
+        if (s.alpha >= 1 || s.alpha <= 0) s.dAlpha *= -1;
+      });
+      requestAnimationFrame(drawSparkles);
+    }
+    drawSparkles();
+
+    // Surprise Modal
+    const modal = document.getElementById('surpriseModal');
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+    setTimeout(() => {
+      modal.style.display = 'flex';
+    }, 10000);
   </script>
 </body>
 </html>
-</content>
-</create_file>

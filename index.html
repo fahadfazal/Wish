@@ -1,17 +1,18 @@
 
-I will enhance the birthday wish website to make it more unique by adding:
+The current birthday wish website is visually beautiful with animations and a romantic design. To add more features that enhance the emotional impact and interaction while keeping the project as a single HTML file and mobile responsive, I propose the following additions:
 
-- A custom handwritten-style font for a more personal and unique feel
-- A dynamic starry background with subtle twinkling stars for a magical atmosphere
-- Animated sparkling effects around the main headline
-- An elegant animated rose that gently sways to symbolize love and romance
-- Smooth scroll-like confetti bursts on button click with colorful hearts
-- Refined layout with subtle layered backgrounds and more distinct color palette
-- Keep all mobile responsive requirements intact with a max width of 350px and height of 600px without scrolling
+1. Background music with Play/Pause control (optional user control, looped soft romantic melody).
+2. A countdown timer to the next birthday (can show days, hours, minutes, seconds).
+3. A "Send Your Wish" text input area below the main message for the visitor (husband) to type a personal message. When submitted, the message is stored in localStorage and displayed in a scrollable area below. This allows personal notes to be saved even after page refresh.
+4. Soft button hover animations and maybe heart-shaped cursors for fun.
+5. A floating candle flame animation or sparkle near the rose to simulate a birthday candle or magical vibe.
+6. Subtle sound effects on button clicks (can be toggled off/on with the music control).
 
-I will include all these enhancements in a single fully-contained HTML file with inline CSS and JS, so it is easy to open and view anywhere.
+All these will be done inside the same single HTML structure, with inline CSS and JavaScript.
 
-Now I will proceed to create this more unique birthday wish website.
+These features add interactivity, sentimentality, and uniqueness while keeping the site compact and mobile friendly.
+
+I will proceed to enhance the existing file accordingly.
 
 
 `birthday_wish_for_wife.html`
@@ -48,6 +49,7 @@ Now I will proceed to create this more unique birthday wish website.
     pointer-events: none;
     z-index: 0;
   }
+
   .star {
     position: absolute;
     background: white;
@@ -72,12 +74,13 @@ Now I will proceed to create this more unique birthday wish website.
     box-shadow:
       inset 0 0 15px 5px rgba(255, 218, 230, 0.4),
       0 15px 30px rgba(175, 70, 130, 0.7);
-    padding: 30px 25px;
+    padding: 25px 25px 15px 25px;
     box-sizing: border-box;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
     z-index: 1;
   }
 
@@ -93,6 +96,7 @@ Now I will proceed to create this more unique birthday wish website.
       0 0 15px #ff2d95,
       0 0 30px #fa0887;
     position: relative;
+    user-select: text;
   }
   /* Sparkles */
   h1::before, h1::after {
@@ -126,34 +130,17 @@ Now I will proceed to create this more unique birthday wish website.
     letter-spacing: 1px;
     color: #ffd9e8cc;
     filter: drop-shadow(0 0 2px #ff4eab);
+    user-select: text;
   }
 
   /* Message paragraph */
-  p {
+  p.message-main {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.15rem;
     line-height: 1.5;
     color: #ffd9e8dd;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     user-select: text;
-  }
-
-  /* Rose SVG container with sway animation */
-  .rose-container {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    width: 90px;
-    height: 150px;
-    filter: drop-shadow(0 2px 4px rgba(255, 20, 80, 0.6));
-    animation: sway 4s ease-in-out infinite;
-    cursor: default;
-    user-select: none;
-  }
-
-  @keyframes sway {
-    0%, 100% { transform: rotate(5deg); }
-    50% { transform: rotate(-7deg); }
   }
 
   /* Show more button styling */
@@ -168,9 +155,10 @@ Now I will proceed to create this more unique birthday wish website.
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(250, 8, 135, 0.7);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin: 0 auto;
+    margin: 5px auto 12px auto;
     outline: none;
     filter: drop-shadow(0 0 6px #fa0887);
+    user-select: none;
   }
   button:hover, button:focus {
     background: linear-gradient(135deg, #ff78c5, #ff37a4);
@@ -183,10 +171,147 @@ Now I will proceed to create this more unique birthday wish website.
     font-size: 1rem;
     font-style: italic;
     color: #ffd9e8cc;
-    margin-top: -40px;
-    margin-bottom: 10px;
+    margin-top: -30px;
+    margin-bottom: 20px;
     line-height: 1.5;
     display: none;
+    max-height: 80px;
+    overflow-y: auto;
+    user-select: text;
+  }
+
+  /* Countdown timer styling */
+  .countdown {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffadc6;
+    background: rgba(255 255 255 / 0.1);
+    border-radius: 16px;
+    padding: 8px 12px;
+    font-weight: 700;
+    box-shadow: 0 0 6px #fa0887aa;
+    user-select: none;
+    margin: 5px auto 15px auto;
+    font-size: 1.15rem;
+    width: fit-content;
+    letter-spacing: 1.2px;
+  }
+
+  /* Input send wish area */
+  #wishForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  #wishInput {
+    width: 90%;
+    max-width: 320px;
+    padding: 10px 14px;
+    border-radius: 24px;
+    border: 2px solid #ff5aad;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    resize: none;
+    min-height: 60px;
+    background-color: rgba(255 255 255 / 0.12);
+    color: #fff;
+    transition: border-color 0.3s ease;
+  }
+  #wishInput::placeholder {
+    color: #ffaad9a0;
+  }
+  #wishInput:focus {
+    border-color: #ff78c5;
+    background-color: rgba(255 255 255 / 0.25);
+  }
+  #wishSubmit {
+    margin-top: 10px;
+    width: 140px;
+    background: linear-gradient(135deg, #fa0887, #ff4eab);
+    border: none;
+    border-radius: 28px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 10px 24px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(250, 8, 135, 0.8);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+  }
+  #wishSubmit:hover, #wishSubmit:focus {
+    background: linear-gradient(135deg, #ff37a4, #ff78c5);
+    box-shadow: 0 8px 20px rgba(255, 55, 164, 1);
+  }
+
+  /* Saved wishes list */
+  #savedWishes {
+    max-height: 120px;
+    width: 90%;
+    overflow-y: auto;
+    border-radius: 20px;
+    background-color: rgba(255 255 255 / 0.1);
+    padding: 10px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #ffabd2;
+    text-align: left;
+    box-shadow:
+      inset 0 0 8px #fa0887a0,
+      0 0 6px #ff5aad80;
+    word-wrap: break-word;
+    user-select: text;
+    scrollbar-width: thin;
+  }
+  #savedWishes::-webkit-scrollbar {
+    width: 6px;
+  }
+  #savedWishes::-webkit-scrollbar-thumb {
+    background: #ff5aadaa;
+    border-radius: 3px;
+  }
+
+  /* Rose SVG container with sway animation */
+  .rose-container {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 90px;
+    height: 150px;
+    filter: drop-shadow(0 2px 4px rgba(255, 20, 80, 0.6));
+    animation: sway 4s ease-in-out infinite;
+    cursor: default;
+    user-select: none;
+    z-index: 2;
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(5deg); }
+    50% { transform: rotate(-7deg); }
+  }
+
+  /* Candle flame */
+  .flame {
+    position: absolute;
+    bottom: 142px;
+    right: 74px;
+    width: 20px;
+    height: 40px;
+    background: radial-gradient(circle at center, #ffaf66 60%, transparent 90%);
+    border-radius: 50% 50% 40% 40% / 100% 100% 80% 80%;
+    filter: drop-shadow(0 0 5px #ffaf66);
+    animation: flicker 1.5s infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+  @keyframes flicker{
+    0%   { transform: scale(1) translateX(0) translateY(0); opacity: 1; }
+    25%  { transform: scale(1.1) translateX(1px) translateY(-1px); opacity: 0.9; }
+    50%  { transform: scale(1) translateX(0) translateY(0); opacity: 1; }
+    75%  { transform: scale(0.9) translateX(-1px) translateY(1px); opacity: 0.9; }
+    100% { transform: scale(1) translateX(0) translateY(0); opacity: 1; }
   }
 
   /* Hearts confetti */
@@ -230,42 +355,88 @@ Now I will proceed to create this more unique birthday wish website.
     }
   }
 
+  /* Audio control button */
+  #audioControl {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255 255 255 / 0.15);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    color: #ff5aad;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff4eab90;
+    transition: background-color 0.3s ease;
+    outline: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+  #audioControl:hover, #audioControl:focus {
+    background: rgba(255 255 255 / 0.3);
+  }
+
   /* Responsive scaling for smaller screens */
   @media screen and (max-width: 350px) {
     h1 { font-size: 2.4rem; }
     h2 { font-size: 1.2rem; }
-    p { font-size: 1rem; }
-    .rose-container {
-      width: 65px;
-      height: 110px;
-      bottom: 15px;
-      right: 15px;
-    }
-    button {
-      font-size: 1rem;
-      padding: 10px 20px;
+    p.message-main { font-size: 1rem; margin-bottom: 8px; }
+    #moreText { font-size: 0.9rem; margin-bottom: 15px; max-height: 70px; }
+    .rose-container { width: 65px; height: 110px; bottom: 15px; right: 15px; }
+    button { font-size: 1rem; padding: 10px 20px; margin-bottom: 5px; }
+    #wishInput { max-width: 260px; }
+    #savedWishes { max-height: 90px; }
+
+    #audioControl {
+      width: 38px;
+      height: 38px;
+      font-size: 20px;
+      top: 8px;
+      left: 8px;
     }
   }
-
 </style>
 </head>
 <body>
 
 <canvas id="starfield"></canvas>
 
+<button id="audioControl" aria-pressed="false" aria-label="Toggle music playback" title="Toggle music playback">▶️</button>
+
 <div class="container" role="main" aria-label="Birthday wish for wife">
   <h1 tabindex="0" aria-label="Happy Birthday, My Love!">Happy Birthday, My Love!</h1>
   <h2 tabindex="0">To the Most Wonderful Wife</h2>
-  <p tabindex="0">
+  <p class="message-main" tabindex="0">
     Every moment with you feels like magic. On this special day, I celebrate the love, warmth, and joy you bring into my life.<br />
     You are my forever muse, my heart’s delight.
   </p>
+
+  <div class="countdown" aria-live="polite" aria-atomic="true" aria-label="Countdown to birthday" title="Countdown to next birthday" tabindex="0">
+    Loading birthday countdown...
+  </div>
+
   <button id="showMoreBtn" aria-expanded="false" aria-controls="moreText" aria-label="Show more birthday message">Show More</button>
   <p id="moreText" tabindex="0" aria-live="polite" aria-hidden="true">
     Thank you for coloring my world with endless love.<br>
     I cherish you every day and promise to keep making beautiful memories together.<br>
     Happy Birthday, my heart's queen! ❤️
   </p>
+
+  <!-- Wish submission form -->
+  <form id="wishForm" aria-label="Send your personal birthday wish">
+    <textarea id="wishInput" aria-label="Type your personal wish here" placeholder="Write your special wish here..." rows="3" maxlength="200"></textarea>
+    <button type="submit" id="wishSubmit" aria-label="Send birthday wish">Send Wish</button>
+  </form>
+
+  <!-- Saved wishes display -->
+  <div id="savedWishes" aria-live="polite" aria-label="Saved birthday wishes from you">
+    <!-- wishes will appear here -->
+  </div>
 </div>
 
 <div class="rose-container" aria-hidden="true" title="Swaying rose illustration" role="img">
@@ -285,6 +456,8 @@ Now I will proceed to create this more unique birthday wish website.
     <path fill="#580438" d="M0 230 Q70 120 128 250 L108 114 Q30 270 0 230z" />
   </svg>
 </div>
+
+<div class="flame" aria-hidden="true" title="Candle flame animation"></div>
 
 <script>
   // Starfield effect creation
@@ -349,6 +522,9 @@ Now I will proceed to create this more unique birthday wish website.
       showMoreBtn.setAttribute('aria-expanded', 'true');
       moreText.setAttribute('aria-hidden', 'false');
     }
+
+    // Trigger hearts confetti on toggle
+    triggerConfettiHearts();
   });
 
   // Confetti hearts on button click
@@ -368,13 +544,115 @@ Now I will proceed to create this more unique birthday wish website.
     const colors = ['#ff2d95', '#ff5aad', '#ff78c5', '#ff3ec9', '#ff1fc1'];
     return colors[Math.floor(Math.random() * colors.length)];
   }
-
-  showMoreBtn.addEventListener('click', () => {
-    // Emit 15 hearts confetti bursts per toggle
+  function triggerConfettiHearts() {
     for (let i = 0; i < 15; i++) {
       setTimeout(createConfettiHeart, i * 100);
     }
+  }
+
+  // Countdown timer to next birthday
+  const countdownElem = document.querySelector('.countdown');
+  const birthdayMonth = 7;  // Change to birthday month (1-12), example: August = 8 so July=7
+  const birthdayDay = 5;    // Change to birthday day (1-31)
+
+  function updateCountdown() {
+    const now = new Date();
+    let year = now.getFullYear();
+    let birthday = new Date(year, birthdayMonth, birthdayDay, 0, 0, 0);
+
+    // If birthday this year already passed, get next year
+    if (now > birthday) {
+      birthday = new Date(year + 1, birthdayMonth, birthdayDay, 0, 0, 0);
+    }
+
+    const diff = birthday - now;
+    if (diff <= 0) {
+      countdownElem.textContent = "Happy Birthday! 🎉";
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hrs = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+
+    countdownElem.textContent = 
+      `Next Birthday In: ${days}d ${hrs}h ${mins}m ${secs}s`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Wish submission & storage in localStorage
+  const wishForm = document.getElementById('wishForm');
+  const wishInput = document.getElementById('wishInput');
+  const savedWishes = document.getElementById('savedWishes');
+
+  function loadWishes(){
+    const stored = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
+    if(stored.length === 0){
+      savedWishes.innerHTML = "<em>No wishes saved yet. Write your special wish!</em>";
+      return;
+    }
+    savedWishes.innerHTML = stored.map(wish => `<p>💖 ${escapeHtml(wish)}</p>`).join('');
+  }
+  function escapeHtml(text){
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  wishForm.addEventListener('submit', e=>{
+    e.preventDefault();
+    const val = wishInput.value.trim();
+    if(val.length === 0){
+      alert('Please write a wish before sending.');
+      wishInput.focus();
+      return;
+    }
+    let wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
+    wishes.unshift(val);
+    if(wishes.length > 20){ wishes.pop(); } // limit to latest 20 wishes
+    localStorage.setItem('birthdayWishes', JSON.stringify(wishes));
+    wishInput.value = '';
+    loadWishes();
+    wishInput.focus();
   });
+
+  loadWishes();
+
+  // Audio playback
+  const audioControl = document.getElementById('audioControl');
+  const audio = new Audio('https://cdn.pixabay.com/download/audio/2021/10/18/audio_8e136cf6db.mp3?filename=calm-ambience-11008.mp3');
+  audio.loop = true;
+  audio.volume = 0.2;
+  let playing = false;
+
+  audioControl.addEventListener('click', () => {
+    if (playing) {
+      audio.pause();
+      playing = false;
+      audioControl.textContent = '▶️';
+      audioControl.setAttribute('aria-pressed', 'false');
+    } else {
+      audio.play();
+      playing = true;
+      audioControl.textContent = '⏸️';
+      audioControl.setAttribute('aria-pressed', 'true');
+    }
+  });
+
+  // Optional: Sound effect on buttons
+  const clickSound = new Audio('https://cdn.pixabay.com/download/audio/2021/08/04/audio_79c41692f7.mp3?filename=button-click-7160.mp3');
+  clickSound.volume = 0.3;
+  // Play click sound on all buttons except audioControl
+  document.querySelectorAll('button:not(#audioControl)').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if(!audio.paused) {
+        clickSound.currentTime = 0;
+        clickSound.play();
+      }
+    });
+  });
+
 </script>
 
 </body>

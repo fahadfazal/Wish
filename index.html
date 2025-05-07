@@ -3,733 +3,376 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Happy Birthday, Rimsha!</title>
+<title>Happy Birthday My Wife</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap');
-
-  * , *::before, *::after {
+  /* Reset and base */
+  * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-  html, body {
-    margin: 0; padding: 0;
+  body, html {
     height: 100%;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
-    color: #2E2E2E;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+    color: #5c1a33;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    transition: background 0.6s ease, color 0.6s ease;
-    position: relative;
-  }
-  body.dark {
-    background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
-    color: #e1e1e1;
-  }
-  .floating-heart {
-    position: fixed;
-    color: #ff2d95cc;
-    font-size: 16px;
-    user-select: none;
-    pointer-events: none;
-    animation: floatUp ease-in-out infinite;
-  }
-  @keyframes floatUp {
-    0% {
-      transform: translateY(0) scale(1) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-600px) scale(1.3) rotate(360deg);
-      opacity: 0;
-    }
+    padding: 20px;
   }
   .container {
-    width: 350px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 25px;
+    padding: 35px 30px 60px 30px;
+    width: 100%;
+    max-width: 350px;
     height: 600px;
-    background: #fff;
-    border-radius: 24px;
-    box-shadow:
-      0 0 15px #ff6a8890,
-      0 8px 24px rgba(255, 105, 135, 0.5);
-    padding: 40px 30px 30px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
+    box-shadow: 0 0 40px rgba(255, 192, 203, 0.6);
     position: relative;
-    z-index: 10;
-    transition: box-shadow 0.6s ease;
-  }
-  body.dark .container {
-    background: #222;
-    box-shadow:
-      0 0 15px #6495ffaa,
-      0 8px 24px rgba(76, 161, 175, 0.5);
-  }
-  .shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.12;
-    pointer-events: none;
-    background: linear-gradient(135deg, #FF6A88 0%, #FF99AC 100%);
-    animation: float 6s ease-in-out infinite;
+    text-align: center;
     user-select: none;
-  }
-  .shape1 {
-    width: 100px;
-    height: 100px;
-    top: -40px;
-    left: -40px;
-    animation-delay: 0s;
-  }
-  .shape2 {
-    width: 60px;
-    height: 60px;
-    bottom: 60px;
-    right: -30px;
-    animation-delay: 3s;
-  }
-  .shape3 {
-    width: 80px;
-    height: 80px;
-    top: 230px;
-    right: 35px;
-    animation-delay: 1.5s;
-  }
-  body.dark .shape {
-    background: linear-gradient(135deg, #4CA1AF 0%, #2C3E50 100%);
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-12px) translateX(8px); }
   }
   h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    color: #FF416C;
-    font-size: 2.8rem;
-    letter-spacing: 1.1px;
-    margin-bottom: 10px;
-    text-align: center;
-    user-select: text;
-  }
-  body.dark h1 {
-    color: #74d0f9;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 8px rgba(188, 50, 86, 0.6);
+    color: #a91b48;
+    letter-spacing: 1.5px;
   }
   h2 {
-    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
     font-weight: 600;
-    font-size: 1.4rem;
-    color: #FF6A88;
-    margin-bottom: 20px;
-    text-align: center;
-    user-select: text;
-  }
-  body.dark h2 {
-    color: #82c7f9;
+    color: #d94e71;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 6px rgba(188, 50, 86, 0.4);
   }
   p.message {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    color: #4a4a4a;
-    padding: 0 15px;
-    flex-grow: 1;
-    text-align: center;
-    user-select: text;
-  }
-  body.dark p.message {
-    color: #c8dff9;
-  }
-  button.toggle-btn {
-    background: #FF416C;
-    border: none;
-    border-radius: 30px;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
     font-size: 1.15rem;
-    padding: 14px 0;
-    width: 100%;
-    cursor: pointer;
-    box-shadow: 0 5px 12px rgba(255, 65, 108, 0.6);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    user-select: none;
-    position: relative;
-    overflow: hidden;
-  }
-  button.toggle-btn:hover, button.toggle-btn:focus {
-    background: #fe346e;
-    box-shadow: 0 8px 18px rgba(254, 52, 110, 0.9);
-    outline: none;
-  }
-  button.toggle-btn:hover::after {
-    animation: sparkle 1s linear;
-  }
-  button.toggle-btn::after {
-    content: '✨';
-    position: absolute;
-    font-size: 1.8rem;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0;
-  }
-  @keyframes sparkle {
-    0%, 100% { opacity: 0; transform: translateY(-5px) scale(0.6) rotate(0deg);}
-    50% { opacity: 1; transform: translateY(0) scale(1) rotate(15deg);}
-  }
-  body.dark button.toggle-btn {
-    background: #74a2e1;
-    box-shadow: 0 5px 12px rgba(74, 125, 196, 0.7);
-  }
-  body.dark button.toggle-btn:hover, body.dark button.toggle-btn:focus {
-    background: #4a7dc4;
-    box-shadow: 0 8px 20px rgba(74, 125, 196, 1);
-  }
-  #moreText {
-    font-size: 1rem;
-    color: #6a6a6a;
-    padding: 0 20px;
-    margin-top: 20px;
-    max-height: 110px;
-    overflow-y: auto;
-    text-align: center;
-    display: none;
+    color: #7a2c44;
+    line-height: 1.5;
+    margin-bottom: 45px;
+    padding: 0 10px;
     user-select: text;
   }
-  body.dark #moreText {
-    color: #a3c4ff;
-  }
-  #moreText::-webkit-scrollbar {
-    width: 6px;
-  }
-  #moreText::-webkit-scrollbar-thumb {
-    background-color: #ff6a88;
-    border-radius: 3px;
-  }
-  body.dark #moreText::-webkit-scrollbar-thumb {
-    background-color: #6495ffbb;
-  }
-  #wishForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 12px;
-  }
-  #wishInput {
-    width: 90%;
-    max-width: 320px;
-    padding: 10px 14px;
-    border-radius: 24px;
-    border: 2px solid #ff5aad;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    outline: none;
-    resize: none;
-    min-height: 60px;
-    background-color: rgba(255 255 255 / 0.12);
-    color: #2e2e2e;
-    transition: border-color 0.3s ease;
-  }
-  #wishInput::placeholder {
-    color: #ffaad9a0;
-  }
-  #wishInput:focus {
-    border-color: #ff78c5;
-    background-color: rgba(255 255 255 / 0.25);
-  }
-  body.dark #wishInput {
-    border-color: #6495ff;
-    color: #e1e1e1;
-    background-color: rgba(100, 149, 255, 0.15);
-  }
-  body.dark #wishInput::placeholder {
-    color: #a9c2e8;
-  }
-  body.dark #wishInput:focus {
-    border-color: #a3c4ff;
-    background-color: rgba(163,196,255,0.35);
-  }
-  #wishSubmit {
-    margin-top: 10px;
-    width: 140px;
-    background: linear-gradient(135deg, #fa0887, #ff4eab);
-    border: none;
-    border-radius: 28px;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 10px 24px;
-    cursor: pointer;
-    box-shadow: 0 6px 12px rgba(250, 8, 135, 0.8);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    outline: none;
-  }
-  #wishSubmit:hover, #wishSubmit:focus {
-    background: linear-gradient(135deg, #ff37a4, #ff78c5);
-    box-shadow: 0 8px 20px rgba(255, 55, 164, 1);
-  }
-  body.dark #wishSubmit {
-    background: linear-gradient(135deg, #4a7dc4, #74a2e1);
-    box-shadow: 0 6px 12px rgba(74, 125, 196, 0.8);
-  }
-  body.dark #wishSubmit:hover, body.dark #wishSubmit:focus {
-    background: linear-gradient(135deg, #74a2e1, #a3c4ff);
-    box-shadow: 0 8px 20px rgba(163, 196, 255, 1);
-  }
-  #savedWishes {
-    max-height: 110px;
-    width: 90%;
-    overflow-y: auto;
-    border-radius: 20px;
-    background-color: rgba(255 255 255 / 0.1);
-    padding: 10px 15px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
-    color: #ffabd2;
-    text-align: left;
-    box-shadow:
-      inset 0 0 8px #fa0887a0,
-      0 0 6px #ff5aad80;
-    word-wrap: break-word;
-    user-select: text;
-    position: relative;
-  }
-  #savedWishes::-webkit-scrollbar {
-    width: 6px;
-  }
-  #savedWishes::-webkit-scrollbar-thumb {
-    background: #ff5aadaa;
-    border-radius: 3px;
-  }
-  body.dark #savedWishes {
-    background-color: rgba(100,149,255,0.1);
-    color: #a3c4ff;
-    box-shadow:
-      inset 0 0 8px #6495ff8c,
-      0 0 6px #6495ff80;
-  }
-  body.dark #savedWishes::-webkit-scrollbar-thumb {
-    background-color: #6495ffbb;
-  }
-  .wish-item {
-    position: relative;
-    padding-right: 28px;
-    margin-bottom: 6px;
-  }
-  .wish-heart {
+  /* Floating hearts container and hearts */
+  .hearts-container {
     position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 18px;
-    color: #ff2d95cc;
-    user-select: none;
-    transition: color 0.3s ease;
+    bottom: 25px;
+    left: 50%;
+    width: 280px;
+    height: 300px;
+    transform: translateX(-50%);
+    pointer-events: none;
+    overflow: visible;
   }
-  .wish-heart.liked {
-    color: #ff0040;
-  }
-  .wish-heart:focus {
-    outline: 2px solid #ff4eab;
-    outline-offset: 2px;
-  }
-  .toggle-container {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    margin-bottom: 14px;
-  }
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 48px;
-    height: 26px;
-  }
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  .slider {
+  .heart {
     position: absolute;
-    cursor: pointer;
-    top:0; left: 0; right: 0; bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 26px;
+    bottom: 0;
+    width: 30px;
+    height: 27px;
+    background: #d94e71;
+    clip-path: polygon(
+      50% 0%,
+      61% 9%,
+      68% 18%,
+      75% 27%,
+      84% 37%,
+      89% 48%,
+      92% 63%,
+      91% 86%,
+      65% 100%,
+      50% 90%,
+      35% 100%,
+      9% 86%,
+      8% 63%,
+      11% 48%,
+      16% 37%,
+      25% 27%,
+      32% 18%,
+      39% 9%
+    );
+    filter: drop-shadow(0 0 5px #da6d9e);
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
   }
-  .slider:before {
-    position: absolute;
+  .heart::after {
     content: "";
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #f8bbd0;
     border-radius: 50%;
+    top: 3px;
+    left: 8px;
   }
-  input:checked + .slider {
-    background-color: #ff416c;
+  .heart::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #f8bbd0;
+    border-radius: 50%;
+    top: 3px;
+    right: 8px;
   }
-  input:checked + .slider:before {
-    transform: translateX(22px);
+
+  /* Heart colors */
+  .heart:nth-child(1) {
+    left: 5%;
+    animation: floatHeart1 6s infinite;
   }
+  .heart:nth-child(2) {
+    left: 25%;
+    animation: floatHeart2 5.5s infinite;
+    background: #f48fb1;
+    filter: drop-shadow(0 0 5px #f06292);
+  }
+  .heart:nth-child(3) {
+    left: 50%;
+    animation: floatHeart2 6.2s infinite;
+  }
+  .heart:nth-child(4) {
+    left: 70%;
+    animation: floatHeart1 5.8s infinite;
+    background: #f06292;
+    filter: drop-shadow(0 0 5px #ec407a);
+  }
+  .heart:nth-child(5) {
+    left: 85%;
+    animation: floatHeart1 6.4s infinite;
+  }
+
+  @keyframes floatHeart1 {
+    0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-35px) translateX(7px) scale(1.1); opacity: 0.8; }
+  }
+  @keyframes floatHeart2 {
+    0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-30px) translateX(-6px) scale(1.1); opacity: 0.85; }
+  }
+
+  button.btn-play {
+    background: #a91b48;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(169, 27, 72, 0.6);
+    transition: background 0.3s, color 0.3s;
+    user-select: none;
+  }
+  button.btn-play:hover,
+  button.btn-play:focus {
+    background: #d94e71;
+    outline: none;
+  }
+
+  /* Confetti canvas */
   #confettiCanvas {
-    position: fixed;
+    position: absolute;
     pointer-events: none;
     top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
   }
-  #audioControl {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(255 255 255 / 0.3);
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    color: #ff5aad;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #ff4eab90;
-    transition: background-color 0.3s ease;
-    outline: none;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 20;
-  }
-  #audioControl:hover, #audioControl:focus {
-    background: rgba(255 255 255 / 0.5);
-  }
-  body.dark #audioControl {
-    color: #74d0f9;
-    box-shadow: 0 0 10px #6495ffaa;
-    background: rgba(255 255 255 / 0.2);
-  }
-  body.dark #audioControl:hover, body.dark #audioControl:focus {
-    background: rgba(255 255 255 / 0.5);
-  }
-  #resetWishesBtn {
-    background: #555;
-    border: none;
-    color: white;
-    font-weight: 600;
-    border-radius: 20px;
-    padding: 6px 14px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    margin: 6px auto 8px auto;
-    display: block;
-    user-select: none;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-    transition: background-color 0.3s ease;
-  }
-  #resetWishesBtn:hover, #resetWishesBtn:focus {
-    background: #ff416c;
-    outline: none;
-  }
+
+  /* Responsive adjustments */
   @media (max-width: 350px) {
     .container {
-      padding: 35px 25px 25px 25px;
+      padding: 25px 20px 50px 20px;
+      width: 100%;
+      max-width: 350px;
+      height: 600px;
     }
     h1 {
       font-size: 2.4rem;
+      letter-spacing: 1px;
     }
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.65rem;
+      margin-bottom: 30px;
     }
     p.message {
+      font-size: 1.05rem;
+      margin-bottom: 35px;
+    }
+    button.btn-play {
       font-size: 1rem;
+      padding: 12px 26px;
     }
-    #moreText {
-      font-size: 0.9rem;
-      max-height: 90px;
-      margin-top: 15px;
+    .hearts-container {
+      width: 240px;
+      height: 250px;
+      bottom: 20px;
     }
-    #wishInput {
-      max-width: 260px;
-    }
-    #savedWishes {
-      max-height: 90px;
-    }
-    #audioControl {
-      width: 38px;
-      height: 38px;
-      font-size: 20px;
-      top: 8px;
-      left: 8px;
-    }
-    .toggle-container {
-      margin-bottom: 12px;
+    .heart {
+      width: 25px;
+      height: 22px;
     }
   }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="floatingHearts"></div>
-<canvas id="confettiCanvas" aria-hidden="true"></canvas>
-<div class="container" role="main" aria-label="Birthday wish website for Rimsha">
-  <div class="toggle-container" aria-label="Toggle light or dark color theme">
-    <label class="switch" title="Toggle light or dark mode">
-      <input type="checkbox" id="themeToggle" aria-checked="false" />
-      <span class="slider"></span>
-    </label>
+  <div class="container" role="main" aria-label="Birthday greeting for my wife">
+    <h1>Happy Birthday</h1>
+    <h2>My Wife ❤️</h2>
+    <p class="message" aria-label="Heartfelt Birthday Message">
+      May your day be filled with endless love, joy, and beautiful memories. You mean the world to me, today and every day.
+    </p>
+    <button class="btn-play" id="playMusicBtn" aria-label="Play romantic birthday song">Play Birthday Song 🎵</button>
+
+    <div class="hearts-container" aria-hidden="true">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
   </div>
-  <button id="audioControl" aria-pressed="false" aria-label="Toggle background music" title="Toggle background music">▶️</button>
-  <h1 tabindex="0">Happy Birthday, Rimsha!</h1>
-  <h2 tabindex="0">To My Wonderful Wife</h2>
-  <p class="message" tabindex="0">
-    You brighten every moment with your love and smile.<br />
-    Wishing you endless joy, laughter, and beautiful memories today and always.
-  </p>
-  <button class="toggle-btn" id="showMoreBtn" aria-expanded="false" aria-controls="moreText" aria-label="Show more birthday message">Show More</button>
-  <p id="moreText" tabindex="0" aria-live="polite" aria-hidden="true">
-    Thank you for being my inspiration and my heart's true home.<br/>
-    I look forward to celebrating many more birthdays together.<br/>
-    I love you endlessly! ❤️
-  </p>
-  
-  <form id="wishForm" aria-label="Send your personal birthday wish">
-    <textarea id="wishInput" aria-label="Type your personal wish here" placeholder="Write your special wish here..." rows="3" maxlength="200" required></textarea>
-    <button type="submit" id="wishSubmit" aria-label="Send birthday wish">Send Wish</button>
-  </form>
 
-  <button id="resetWishesBtn" aria-label="Clear all saved wishes">Clear All Wishes</button>
-
-  <div id="savedWishes" aria-live="polite" aria-label="Saved birthday wishes from you">
-  </div>
-</div>
-
-<script>
-  const floatingHeartsContainer = document.getElementById('floatingHearts');
-  function createFloatingHeart() {
-    const heart = document.createElement('div');
-    heart.textContent = '❤';
-    heart.className = 'floating-heart';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.fontSize = (12 + Math.random() * 16) + 'px';
-    heart.style.animationDuration = (8 + Math.random() * 7) + 's';
-    floatingHeartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 15000);
-  }
-  setInterval(createFloatingHeart, 800);
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  const showMoreBtn = document.getElementById('showMoreBtn');
-  const moreText = document.getElementById('moreText');
-  showMoreBtn.addEventListener('click', () => {
-    const visible = moreText.style.display === 'block';
-    if (visible) {
-      moreText.style.display = 'none';
-      showMoreBtn.textContent = 'Show More';
-      showMoreBtn.setAttribute('aria-expanded', 'false');
-      moreText.setAttribute('aria-hidden', 'true');
-    } else {
-      moreText.style.display = 'block';
-      showMoreBtn.textContent = 'Show Less';
-      showMoreBtn.setAttribute('aria-expanded', 'true');
-      moreText.setAttribute('aria-hidden', 'false');
-      launchConfetti();
+  <script>
+    // Confetti Animation (same as previous but with softer colors)
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resizeCanvas() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
     }
-  });
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-  const wishForm = document.getElementById('wishForm');
-  const wishInput = document.getElementById('wishInput');
-  const savedWishes = document.getElementById('savedWishes');
-  const resetWishesBtn = document.getElementById('resetWishesBtn');
+    const confettiCount = 70;
+    const confetti = [];
 
-  function loadWishes() {
-    const stored = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
-    if (stored.length === 0) {
-      savedWishes.innerHTML = "<em>No wishes saved yet. Write your special wish!</em>";
-      return;
+    function randomRange(min, max) {
+      return Math.random() * (max - min) + min;
     }
-    savedWishes.innerHTML = stored.map((wish, idx) => `
-      <div class="wish-item" data-index="${idx}" tabindex="0">
-        ${escapeHtml(wish.text)}
-        <span role="button" tabindex="0" aria-label="${wish.liked ? 'Unlike' : 'Like'} wish" class="wish-heart ${wish.liked ? 'liked' : ''}">&#10084;</span>
-      </div>`).join('');
-    bindWishHearts();
-  }
 
-  wishForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const val = wishInput.value.trim();
-    if (!val) {
-      alert('Please write a wish before sending.');
-      wishInput.focus();
-      return;
-    }
-    let wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
-    wishes.unshift({ text: val, liked: false });
-    if (wishes.length > 50) wishes.pop();
-    localStorage.setItem('birthdayWishes', JSON.stringify(wishes));
-    wishInput.value = '';
-    loadWishes();
-    wishInput.focus();
-  });
+    class Confetto {
+      constructor() {
+        this.x = randomRange(0, W);
+        this.y = randomRange(-H, 0);
+        this.r = randomRange(5, 9);
+        this.d = randomRange(10, 25);
+        this.color = `hsl(${randomRange(330, 350)}, 80%, 75%)`; // soft pinkish tones
+        this.tilt = randomRange(-10, 10);
+        this.tiltAngle = 0;
+        this.tiltAngleIncrement = randomRange(0.04, 0.1);
+        this.speedY = randomRange(1, 2.5);
+        this.speedX = randomRange(-0.5, 0.5);
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        this.tiltAngle += this.tiltAngleIncrement;
+        this.tilt = Math.sin(this.tiltAngle) * 12;
 
-  resetWishesBtn.addEventListener('click', () => {
-    if (confirm('Are you sure you want to clear all saved wishes?')) {
-      localStorage.removeItem('birthdayWishes');
-      loadWishes();
-    }
-  });
-
-  function bindWishHearts() {
-    const hearts = savedWishes.querySelectorAll('.wish-heart');
-    hearts.forEach(heart => {
-      heart.onclick = toggleLike;
-      heart.onkeydown = (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleLike.call(heart);
+        if (this.y > H) {
+          this.y = randomRange(-20, 0);
+          this.x = randomRange(0, W);
         }
+        if (this.x > W) this.x = 0;
+        else if (this.x < 0) this.x = W;
       }
-    });
-  }
-  function toggleLike() {
-    const wishItem = this.closest('.wish-item');
-    if (!wishItem) return;
-    const idx = Number(wishItem.getAttribute('data-index'));
-    let wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
-    if (idx >= 0 && idx < wishes.length) {
-      wishes[idx].liked = !wishes[idx].liked;
-      localStorage.setItem('birthdayWishes', JSON.stringify(wishes));
-      loadWishes();
-    }
-  }
-
-  loadWishes();
-
-  const confettiCanvas = document.getElementById('confettiCanvas');
-  const ctx = confettiCanvas.getContext('2d');
-  let confettiPieces = [];
-  let animationRunning = false;
-
-  function ConfettiPiece() {
-    this.x = Math.random() * confettiCanvas.width;
-    this.y = Math.random() * confettiCanvas.height - confettiCanvas.height;
-    this.size = 6 + Math.random() * 6;
-    this.speedY = 1 + Math.random() * 3;
-    this.speedX = (Math.random() - 0.5) * 2;
-    this.angle = Math.random() * 2 * Math.PI;
-    this.spin = 0.1 + Math.random() * 0.3;
-    this.color = `hsl(${Math.floor(Math.random()*360)},70%,60%)`;
-  }
-  ConfettiPiece.prototype.update = function() {
-    this.y += this.speedY;
-    this.x += this.speedX;
-    this.angle += this.spin;
-    if (this.y > confettiCanvas.height) {
-      this.y = -this.size;
-      this.x = Math.random() * confettiCanvas.width;
-    }
-  };
-  ConfettiPiece.prototype.draw = function() {
-    ctx.save();
-    ctx.translate(this.x, this.y);
-    ctx.rotate(this.angle);
-    ctx.fillStyle = this.color;
-    ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size/3);
-    ctx.restore();
-  };
-  function launchConfetti() {
-    if (animationRunning) return;
-    if (confettiPieces.length === 0) {
-      for (let i=0; i<150; i++) {
-        confettiPieces.push(new ConfettiPiece());
+      draw(ctx) {
+        ctx.beginPath();
+        ctx.lineWidth = this.r / 2;
+        ctx.strokeStyle = this.color;
+        ctx.moveTo(this.x + this.tilt + this.r / 2, this.y);
+        ctx.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 2);
+        ctx.stroke();
       }
     }
-    animationRunning = true;
-    animateConfetti();
-    setTimeout(() => {
-      animationRunning = false;
-      confettiPieces = [];
-      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-    }, 6000);
-  }
 
-  function animateConfetti() {
-    if (!animationRunning) return;
-    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-    confettiPieces.forEach(p => {
-      p.update();
-      p.draw();
+    function initConfetti() {
+      for (let i = 0; i < confettiCount; i++) {
+        confetti.push(new Confetto());
+      }
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, W, H);
+      confetti.forEach(c => {
+        c.update();
+        c.draw(ctx);
+      });
+      requestAnimationFrame(drawConfetti);
+    }
+
+    initConfetti();
+    drawConfetti();
+
+    // Play gentle romantic melody using Web Audio API on button press
+    const btn = document.getElementById('playMusicBtn');
+    let audioPlaying = false;
+
+    const context = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Simple romantic melody notes (soft piano style frequencies)
+    const notes = [
+      { freq: 440, dur: 0.5 }, // A4
+      { freq: 493.88, dur: 0.5 }, // B4
+      { freq: 523.25, dur: 1.0 }, // C5
+      { freq: 493.88, dur: 0.5 }, // B4
+      { freq: 440, dur: 0.5 }, // A4
+      { freq: 392, dur: 1.3 }, // G4
+      { freq: 349.23, dur: 0.5 }, // F4
+      { freq: 392, dur: 0.5 }, // G4
+      { freq: 440, dur: 1.2 }, // A4
+      { freq: 391.99, dur: 1.5 }, // G4
+    ];
+
+    function playTone(freq, duration, when) {
+      const osc = context.createOscillator();
+      const gainNode = context.createGain();
+      osc.frequency.value = freq;
+      osc.type = 'triangle';
+      osc.connect(gainNode);
+      gainNode.connect(context.destination);
+      osc.start(when);
+      gainNode.gain.setValueAtTime(0.25, when);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, when + duration);
+      osc.stop(when + duration);
+    }
+
+    function playMelody() {
+      let startTime = context.currentTime + 0.1;
+      notes.forEach(({ freq, dur }, i) => {
+        playTone(freq, dur, startTime);
+        startTime += dur;
+      });
+    }
+
+    btn.addEventListener('click', () => {
+      if (!audioPlaying) {
+        if (context.state === 'suspended') {
+          context.resume();
+        }
+        playMelody();
+        audioPlaying = true;
+        btn.textContent = 'Playing... 🎵';
+        btn.disabled = true;
+        setTimeout(() => {
+          audioPlaying = false;
+          btn.textContent = 'Play Birthday Song 🎵';
+          btn.disabled = false;
+        }, 7000);
+      }
     });
-    requestAnimationFrame(animateConfetti);
-  }
-
-  function resizeCanvas() {
-    confettiCanvas.width = window.innerWidth;
-    confettiCanvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  const themeToggle = document.getElementById('themeToggle');
-  function setTheme(dark) {
-    if (dark) {
-      document.body.classList.add('dark');
-      themeToggle.setAttribute('aria-checked', 'true');
-    } else {
-      document.body.classList.remove('dark');
-      themeToggle.setAttribute('aria-checked', 'false');
-    }
-    localStorage.setItem('themeDark', dark ? 'true' : 'false');
-  }
-  themeToggle.addEventListener('change', () => {
-    setTheme(themeToggle.checked);
-  });
-  const savedTheme = localStorage.getItem('themeDark');
-  if (savedTheme === 'true') {
-    themeToggle.checked = true;
-    setTheme(true);
-  } else {
-    setTheme(false);
-  }
-
-  const audioControl = document.getElementById('audioControl');
-  const audio = new Audio('https://cdn.pixabay.com/download/audio/2021/10/18/audio_8e136cf6db.mp3?filename=calm-ambience-11008.mp3');
-  audio.loop = true;
-  audio.volume = 0.15;
-  let playing = false;
-
-  audioControl.addEventListener('click', () => {
-    if (playing) {
-      audio.pause();
-      playing = false;
-      audioControl.textContent = '▶️';
-      audioControl.setAttribute('aria-pressed', 'false');
-    } else {
-      audio.play();
-      playing = true;
-      audioControl.textContent = '⏸️';
-      audioControl.setAttribute('aria-pressed', 'true');
-    }
-  });
-</script>
-
+  </script>
 </body>
 </html>
+</content>
+</create_file>

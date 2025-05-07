@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Happy Birthday, My Love!</title>
+<title>Happy Birthday, Rimsha!</title>
 <style>
-  /* Google Fonts */
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap');
 
-  /* Reset */
+  /* Reset & base */
   *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -25,7 +24,6 @@
     overflow: hidden;
     transition: background 0.6s ease, color 0.6s ease;
   }
-  /* Dark mode styles */
   body.dark {
     background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
     color: #e1e1e1;
@@ -117,7 +115,7 @@
     color: #82c7f9;
   }
 
-  /* Main message */
+  /* Message */
   p.message {
     font-size: 1.1rem;
     line-height: 1.5;
@@ -129,27 +127,6 @@
   }
   body.dark p.message {
     color: #c8dff9;
-  }
-
-  /* Countdown timer */
-  .countdown {
-    font-family: 'Poppins', sans-serif;
-    color: #ffadc6;
-    background: rgba(255 255 255 / 0.15);
-    border-radius: 18px;
-    padding: 8px 16px;
-    font-weight: 700;
-    box-shadow: 0 0 8px #fa0887bb;
-    user-select: none;
-    margin: 12px auto 16px auto;
-    font-size: 1.2rem;
-    width: fit-content;
-    letter-spacing: 1.4px;
-    text-align: center;
-  }
-  body.dark .countdown {
-    box-shadow: 0 0 8px #6495ffbb;
-    color: #9ccfff;
   }
 
   /* Show More button */
@@ -182,7 +159,7 @@
     box-shadow: 0 8px 20px rgba(74, 125, 196, 1);
   }
 
-  /* Additional message displayed on toggle */
+  /* Additional message */
   #moreText {
     font-size: 1rem;
     color: #6a6a6a;
@@ -197,7 +174,6 @@
   body.dark #moreText {
     color: #a3c4ff;
   }
-  /* Scrollbar styling */
   #moreText::-webkit-scrollbar {
     width: 6px;
   }
@@ -209,7 +185,7 @@
     background-color: #6495ffbb;
   }
 
-  /* Wish input form */
+  /* Wish input */
   #wishForm {
     display: flex;
     flex-direction: column;
@@ -251,7 +227,6 @@
     border-color: #a3c4ff;
     background-color: rgba(163,196,255,0.35);
   }
-
   #wishSubmit {
     margin-top: 10px;
     width: 140px;
@@ -280,7 +255,7 @@
     box-shadow: 0 8px 20px rgba(163, 196, 255, 1);
   }
 
-  /* Saved wishes container */
+  /* Saved wishes */
   #savedWishes {
     max-height: 110px;
     width: 90%;
@@ -316,7 +291,7 @@
     background-color: #6495ffbb;
   }
 
-  /* Light/dark toggle switch container */
+  /* Light/Dark toggle switch */
   .toggle-container {
     display: flex;
     justify-content: flex-end;
@@ -448,7 +423,7 @@
 <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
 <!-- Container -->
-<div class="container" role="main" aria-label="Modern birthday wish for wife">
+<div class="container" role="main" aria-label="Birthday wish website for Rimsha">
 
   <!-- Light/Dark toggle -->
   <div class="toggle-container" aria-label="Toggle light or dark color theme">
@@ -462,7 +437,7 @@
   <button id="audioControl" aria-pressed="false" aria-label="Toggle background music" title="Toggle background music">▶️</button>
 
   <!-- Header -->
-  <h1 tabindex="0">Happy Birthday, My Love!</h1>
+  <h1 tabindex="0">Happy Birthday, Rimsha!</h1>
   <h2 tabindex="0">To My Wonderful Wife</h2>
 
   <!-- Main message -->
@@ -471,18 +446,13 @@
     Wishing you endless joy, laughter, and beautiful memories today and always.
   </p>
 
-  <!-- Countdown -->
-  <div class="countdown" aria-live="polite" aria-atomic="true" aria-label="Countdown to birthday" title="Countdown to next birthday" tabindex="0">
-    Loading birthday countdown...
-  </div>
-
   <!-- Show More toggle button -->
   <button class="toggle-btn" id="showMoreBtn" aria-expanded="false" aria-controls="moreText" aria-label="Show more birthday message">Show More</button>
 
   <!-- Extra message -->
   <p id="moreText" tabindex="0" aria-live="polite" aria-hidden="true">
-    Thank you for being my inspiration and my heart's true home.<br/>
-    I look forward to celebrating many more birthdays together.<br/>
+    Thank you for being my inspiration and my heart's true home.<br />
+    I look forward to celebrating many more birthdays together.<br />
     I love you endlessly! ❤️
   </p>
 
@@ -524,36 +494,6 @@
       launchConfetti();
     }
   });
-
-  // Countdown timer
-  const countdownElem = document.querySelector('.countdown');
-  const birthdayMonth = 7;  // (0-based: 0=Jan)
-  const birthdayDay = 5;
-
-  function updateCountdown() {
-    const now = new Date();
-    let year = now.getFullYear();
-    let birthday = new Date(year, birthdayMonth, birthdayDay, 0, 0, 0);
-
-    if (now > birthday) {
-      birthday = new Date(year + 1, birthdayMonth, birthdayDay, 0, 0, 0);
-    }
-
-    const diff = birthday - now;
-    if (diff <= 0) {
-      countdownElem.textContent = "Happy Birthday! 🎉🎉🎉";
-      return;
-    }
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hrs = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const secs = Math.floor((diff % (1000*60)) / 1000);
-
-    countdownElem.textContent =
-      `Next Birthday In: ${days}d ${hrs}h ${mins}m ${secs}s`;
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 
   // Wish submission and storage
   const wishForm = document.getElementById('wishForm');
@@ -682,7 +622,6 @@
 
   // Background music control
   const audioControl = document.getElementById('audioControl');
-  // Soft romantic loop audio from pixabay (royalty free)
   const audio = new Audio('https://cdn.pixabay.com/download/audio/2021/10/18/audio_8e136cf6db.mp3?filename=calm-ambience-11008.mp3');
   audio.loop = true;
   audio.volume = 0.15;
@@ -705,6 +644,3 @@
 
 </body>
 </html>
-</content>
-</create_file>
-```

@@ -1,19 +1,3 @@
-I will enhance the modern birthday wish website by adding the following new features while keeping its clean, minimalist, and modern aesthetic:
-
-1. Smooth animated confetti burst on button click to celebrate and add visual excitement.
-2. A real-time countdown timer displayed prominently showing days, hours, minutes, and seconds to the birthday.
-3. Light/dark toggle switch for user personalization.
-4. Background music toggle button with a subtle, modern control (soft romantic tune).
-5. An optional heartfelt message input area where you can type a personal note that is saved in localStorage and displayed below.
-6. Responsive to mobile displays and still fits within 350px width and 600px height with no scroll.
-
-All features will be contained in the single HTML file with inline CSS and JS.
-
-Now I will implement these features and provide the fully updated modern birthday wish website with all enhancements.
-
-
-`modern_birthday_wish_for_wife.html`
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,12 +8,12 @@ Now I will implement these features and provide the fully updated modern birthda
   /* Google Fonts */
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap');
 
-  /* Base Reset */
-  * {
+  /* Reset */
+  *, *::before, *::after {
     box-sizing: border-box;
-    margin: 0; padding: 0;
   }
   html, body {
+    margin: 0; padding: 0;
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif;
@@ -41,7 +25,7 @@ Now I will implement these features and provide the fully updated modern birthda
     overflow: hidden;
     transition: background 0.6s ease, color 0.6s ease;
   }
-  /* Dark mode */
+  /* Dark mode styles */
   body.dark {
     background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
     color: #e1e1e1;
@@ -49,7 +33,6 @@ Now I will implement these features and provide the fully updated modern birthda
 
   /* Container */
   .container {
-    position: relative;
     width: 350px;
     height: 600px;
     background: #fff;
@@ -61,67 +44,66 @@ Now I will implement these features and provide the fully updated modern birthda
     justify-content: flex-start;
     align-items: center;
     overflow: hidden;
+    position: relative;
   }
   body.dark .container {
     background: #222;
     box-shadow: 0 8px 24px rgba(76, 161, 175, 0.4);
   }
 
-  /* Floating shapes */
+  /* Floating subtle shapes */
   .shape {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.15;
+    opacity: 0.12;
+    pointer-events: none;
     background: linear-gradient(135deg, #FF6A88 0%, #FF99AC 100%);
     animation: float 6s ease-in-out infinite;
-    pointer-events: none;
+    user-select: none;
   }
   .shape1 {
     width: 100px;
     height: 100px;
-    top: -30px;
-    left: -30px;
+    top: -40px;
+    left: -40px;
     animation-delay: 0s;
   }
   .shape2 {
     width: 60px;
     height: 60px;
-    bottom: 50px;
-    right: -20px;
+    bottom: 60px;
+    right: -30px;
     animation-delay: 3s;
   }
   .shape3 {
     width: 80px;
     height: 80px;
-    top: 200px;
-    right: 40px;
+    top: 230px;
+    right: 35px;
     animation-delay: 1.5s;
   }
   body.dark .shape {
     background: linear-gradient(135deg, #4CA1AF 0%, #2C3E50 100%);
-    opacity: 0.1;
   }
   @keyframes float {
     0%, 100% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-15px) translateX(10px); }
+    50% { transform: translateY(-12px) translateX(8px); }
   }
 
-  /* Heading */
+  /* Headings */
   h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     color: #FF416C;
     font-size: 2.8rem;
     letter-spacing: 1.1px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-align: center;
     user-select: text;
   }
   body.dark h1 {
     color: #74d0f9;
   }
-
-  /* Sub-heading */
   h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -135,7 +117,7 @@ Now I will implement these features and provide the fully updated modern birthda
     color: #82c7f9;
   }
 
-  /* Message */
+  /* Main message */
   p.message {
     font-size: 1.1rem;
     line-height: 1.5;
@@ -149,8 +131,29 @@ Now I will implement these features and provide the fully updated modern birthda
     color: #c8dff9;
   }
 
-  /* Button */
-  button {
+  /* Countdown timer */
+  .countdown {
+    font-family: 'Poppins', sans-serif;
+    color: #ffadc6;
+    background: rgba(255 255 255 / 0.15);
+    border-radius: 18px;
+    padding: 8px 16px;
+    font-weight: 700;
+    box-shadow: 0 0 8px #fa0887bb;
+    user-select: none;
+    margin: 12px auto 16px auto;
+    font-size: 1.2rem;
+    width: fit-content;
+    letter-spacing: 1.4px;
+    text-align: center;
+  }
+  body.dark .countdown {
+    box-shadow: 0 0 8px #6495ffbb;
+    color: #9ccfff;
+  }
+
+  /* Show More button */
+  button.toggle-btn {
     background: #FF416C;
     border: none;
     border-radius: 30px;
@@ -158,34 +161,34 @@ Now I will implement these features and provide the fully updated modern birthda
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1.15rem;
-    padding: 15px 0;
+    padding: 14px 0;
     width: 100%;
     cursor: pointer;
     box-shadow: 0 5px 12px rgba(255, 65, 108, 0.6);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     user-select: none;
   }
-  button:hover, button:focus {
+  button.toggle-btn:hover, button.toggle-btn:focus {
     background: #fe346e;
     box-shadow: 0 8px 18px rgba(254, 52, 110, 0.9);
     outline: none;
   }
-  body.dark button {
+  body.dark button.toggle-btn {
     background: #74a2e1;
-    box-shadow: 0 5px 12px rgba(116, 162, 225,0.7);
+    box-shadow: 0 5px 12px rgba(74, 125, 196, 0.7);
   }
-  body.dark button:hover, body.dark button:focus {
+  body.dark button.toggle-btn:hover, body.dark button.toggle-btn:focus {
     background: #4a7dc4;
     box-shadow: 0 8px 20px rgba(74, 125, 196, 1);
   }
 
-  /* Additional message */
+  /* Additional message displayed on toggle */
   #moreText {
     font-size: 1rem;
     color: #6a6a6a;
     padding: 0 20px;
-    margin-top: 18px;
-    max-height: 120px;
+    margin-top: 20px;
+    max-height: 110px;
     overflow-y: auto;
     text-align: center;
     display: none;
@@ -194,7 +197,7 @@ Now I will implement these features and provide the fully updated modern birthda
   body.dark #moreText {
     color: #a3c4ff;
   }
-  /* Scrollbar for #moreText */
+  /* Scrollbar styling */
   #moreText::-webkit-scrollbar {
     width: 6px;
   }
@@ -203,37 +206,16 @@ Now I will implement these features and provide the fully updated modern birthda
     border-radius: 3px;
   }
   body.dark #moreText::-webkit-scrollbar-thumb {
-    background-color: #6495ff;
+    background-color: #6495ffbb;
   }
 
-  /* Countdown timer styling */
-  .countdown {
-    font-family: 'Poppins', sans-serif;
-    color: #ffadc6;
-    background: rgba(255 255 255 / 0.1);
-    border-radius: 16px;
-    padding: 8px 12px;
-    font-weight: 700;
-    box-shadow: 0 0 6px #fa0887aa;
-    user-select: none;
-    margin: 15px auto 10px auto;
-    font-size: 1.15rem;
-    width: fit-content;
-    letter-spacing: 1.2px;
-    text-align: center;
-  }
-  body.dark .countdown {
-    box-shadow: 0 0 8px #6495ffbb;
-    color: #9ccfff;
-  }
-
-  /* Wish submission area */
+  /* Wish input form */
   #wishForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-bottom: 10px;
+    margin-top: 12px;
   }
   #wishInput {
     width: 90%;
@@ -247,7 +229,7 @@ Now I will implement these features and provide the fully updated modern birthda
     resize: none;
     min-height: 60px;
     background-color: rgba(255 255 255 / 0.12);
-    color: #2E2E2E;
+    color: #2e2e2e;
     transition: border-color 0.3s ease;
   }
   #wishInput::placeholder {
@@ -260,7 +242,7 @@ Now I will implement these features and provide the fully updated modern birthda
   body.dark #wishInput {
     border-color: #6495ff;
     color: #e1e1e1;
-    background-color: rgba(100,149,255,0.15);
+    background-color: rgba(100, 149, 255, 0.15);
   }
   body.dark #wishInput::placeholder {
     color: #a9c2e8;
@@ -291,14 +273,14 @@ Now I will implement these features and provide the fully updated modern birthda
   }
   body.dark #wishSubmit {
     background: linear-gradient(135deg, #4a7dc4, #74a2e1);
-    box-shadow: 0 6px 12px rgba(74, 125, 196,0.8);
+    box-shadow: 0 6px 12px rgba(74, 125, 196, 0.8);
   }
   body.dark #wishSubmit:hover, body.dark #wishSubmit:focus {
     background: linear-gradient(135deg, #74a2e1, #a3c4ff);
     box-shadow: 0 8px 20px rgba(163, 196, 255, 1);
   }
 
-  /* Saved wishes list */
+  /* Saved wishes container */
   #savedWishes {
     max-height: 110px;
     width: 90%;
@@ -334,15 +316,13 @@ Now I will implement these features and provide the fully updated modern birthda
     background-color: #6495ffbb;
   }
 
-  /* Light/Dark toggle switch container */
+  /* Light/dark toggle switch container */
   .toggle-container {
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
   }
-
-  /* Toggle switch */
   .switch {
     position: relative;
     display: inline-block;
@@ -380,7 +360,7 @@ Now I will implement these features and provide the fully updated modern birthda
     transform: translateX(22px);
   }
 
-  /* Confetti container and pieces */
+  /* Confetti canvas */
   #confettiCanvas {
     position: fixed;
     pointer-events: none;
@@ -390,7 +370,7 @@ Now I will implement these features and provide the fully updated modern birthda
     z-index: 9999;
   }
 
-  /* Audio control button */
+  /* Audio control */
   #audioControl {
     position: absolute;
     top: 10px;
@@ -401,7 +381,7 @@ Now I will implement these features and provide the fully updated modern birthda
     width: 42px;
     height: 42px;
     color: #ff5aad;
-    font-size: 24px;
+    font-size: 22px;
     cursor: pointer;
     box-shadow: 0 0 10px #ff4eab90;
     transition: background-color 0.3s ease;
@@ -424,8 +404,8 @@ Now I will implement these features and provide the fully updated modern birthda
     background: rgba(255 255 255 / 0.5);
   }
 
-  /* Responsive adjustments */
-  @media screen and (max-width: 350px) {
+  /* Responsive */
+  @media (max-width: 350px) {
     .container {
       padding: 35px 25px 25px 25px;
     }
@@ -437,12 +417,11 @@ Now I will implement these features and provide the fully updated modern birthda
     }
     p.message {
       font-size: 1rem;
-      margin-bottom: 8px;
     }
     #moreText {
       font-size: 0.9rem;
-      margin-bottom: 15px;
-      max-height: 95px;
+      max-height: 90px;
+      margin-top: 15px;
     }
     #wishInput {
       max-width: 260px;
@@ -457,69 +436,82 @@ Now I will implement these features and provide the fully updated modern birthda
       top: 8px;
       left: 8px;
     }
+    .toggle-container {
+      margin-bottom: 12px;
+    }
   }
 </style>
 </head>
 <body>
 
+<!-- Confetti canvas -->
 <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
+<!-- Container -->
 <div class="container" role="main" aria-label="Modern birthday wish for wife">
 
+  <!-- Light/Dark toggle -->
   <div class="toggle-container" aria-label="Toggle light or dark color theme">
-    <label class="switch" title="Toggle light/dark mode">
+    <label class="switch" title="Toggle light or dark mode">
       <input type="checkbox" id="themeToggle" aria-checked="false" />
       <span class="slider"></span>
     </label>
   </div>
 
+  <!-- Audio control -->
   <button id="audioControl" aria-pressed="false" aria-label="Toggle background music" title="Toggle background music">▶️</button>
 
+  <!-- Header -->
   <h1 tabindex="0">Happy Birthday, My Love!</h1>
   <h2 tabindex="0">To My Wonderful Wife</h2>
+
+  <!-- Main message -->
   <p class="message" tabindex="0">
     You brighten every moment with your love and smile.<br />
     Wishing you endless joy, laughter, and beautiful memories today and always.
   </p>
 
+  <!-- Countdown -->
   <div class="countdown" aria-live="polite" aria-atomic="true" aria-label="Countdown to birthday" title="Countdown to next birthday" tabindex="0">
     Loading birthday countdown...
   </div>
 
-  <button id="showMoreBtn" aria-expanded="false" aria-controls="moreText" aria-label="Show more birthday message">Show More</button>
+  <!-- Show More toggle button -->
+  <button class="toggle-btn" id="showMoreBtn" aria-expanded="false" aria-controls="moreText" aria-label="Show more birthday message">Show More</button>
+
+  <!-- Extra message -->
   <p id="moreText" tabindex="0" aria-live="polite" aria-hidden="true">
     Thank you for being my inspiration and my heart's true home.<br/>
     I look forward to celebrating many more birthdays together.<br/>
     I love you endlessly! ❤️
   </p>
 
-  <!-- Wish submission form -->
+  <!-- Wish input -->
   <form id="wishForm" aria-label="Send your personal birthday wish">
-    <textarea id="wishInput" aria-label="Type your personal wish here" placeholder="Write your special wish here..." rows="3" maxlength="200"></textarea>
+    <textarea id="wishInput" aria-label="Type your personal wish here" placeholder="Write your special wish here..." rows="3" maxlength="200" required></textarea>
     <button type="submit" id="wishSubmit" aria-label="Send birthday wish">Send Wish</button>
   </form>
 
-  <!-- Saved wishes display -->
+  <!-- Saved wishes -->
   <div id="savedWishes" aria-live="polite" aria-label="Saved birthday wishes from you">
-    <!-- wishes will appear here -->
+    <!-- wishes appear here -->
   </div>
-
 </div>
 
 <script>
-  // Helper to escape HTML
-  function escapeHtml(text){
+  // Escape HTML helper
+  function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
   }
 
-  // Show more toggle
+  // Show More toggle
   const showMoreBtn = document.getElementById('showMoreBtn');
   const moreText = document.getElementById('moreText');
   showMoreBtn.addEventListener('click', () => {
-    const isVisible = moreText.style.display === 'block';
-    if (isVisible) {
+    const visible = moreText.style.display === 'block';
+    if (visible) {
       moreText.style.display = 'none';
       showMoreBtn.textContent = 'Show More';
       showMoreBtn.setAttribute('aria-expanded', 'false');
@@ -529,14 +521,14 @@ Now I will implement these features and provide the fully updated modern birthda
       showMoreBtn.textContent = 'Show Less';
       showMoreBtn.setAttribute('aria-expanded', 'true');
       moreText.setAttribute('aria-hidden', 'false');
-      triggerConfetti();
+      launchConfetti();
     }
   });
 
-  // Countdown timer (change month, day here)
+  // Countdown timer
   const countdownElem = document.querySelector('.countdown');
-  const birthdayMonth = 7;  // zero-based: 0=Jan, 7=August (change accordingly)
-  const birthdayDay = 5;    // day of month
+  const birthdayMonth = 7;  // August (0-based: 0=Jan)
+  const birthdayDay = 5;
 
   function updateCountdown() {
     const now = new Date();
@@ -548,22 +540,22 @@ Now I will implement these features and provide the fully updated modern birthda
     }
 
     const diff = birthday - now;
-    if(diff <= 0){
-      countdownElem.textContent = "Happy Birthday! 🎉";
+    if (diff <= 0) {
+      countdownElem.textContent = "Happy Birthday! 🎉🎉🎉";
       return;
     }
-
     const days = Math.floor(diff / (1000*60*60*24));
     const hrs = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
     const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
     const secs = Math.floor((diff % (1000*60)) / 1000);
 
-    countdownElem.textContent = `Next Birthday In: ${days}d ${hrs}h ${mins}m ${secs}s`;
+    countdownElem.textContent =
+      `Next Birthday In: ${days}d ${hrs}h ${mins}m ${secs}s`;
   }
   updateCountdown();
-  setInterval(updateCountdown,1000);
+  setInterval(updateCountdown, 1000);
 
-  // Wish submission & storage
+  // Wish submission and storage
   const wishForm = document.getElementById('wishForm');
   const wishInput = document.getElementById('wishInput');
   const savedWishes = document.getElementById('savedWishes');
@@ -576,33 +568,36 @@ Now I will implement these features and provide the fully updated modern birthda
     }
     savedWishes.innerHTML = stored.map(wish => `<p>💖 ${escapeHtml(wish)}</p>`).join('');
   }
-  wishForm.addEventListener('submit', (e) => {
+
+  wishForm.addEventListener('submit', e => {
     e.preventDefault();
     const val = wishInput.value.trim();
-    if(val.length === 0){
+    if (!val) {
       alert('Please write a wish before sending.');
       wishInput.focus();
       return;
     }
     let wishes = JSON.parse(localStorage.getItem('birthdayWishes') || '[]');
     wishes.unshift(val);
-    if(wishes.length > 20) wishes.pop();
+    if (wishes.length > 20) wishes.pop();
     localStorage.setItem('birthdayWishes', JSON.stringify(wishes));
     wishInput.value = '';
     loadWishes();
     wishInput.focus();
   });
+
   loadWishes();
 
-  // Confetti animation with canvas
+  // Confetti animation using Canvas
   const confettiCanvas = document.getElementById('confettiCanvas');
   const ctx = confettiCanvas.getContext('2d');
   let confettiPieces = [];
+  let animationRunning = false;
 
   function ConfettiPiece() {
     this.x = Math.random() * confettiCanvas.width;
     this.y = Math.random() * confettiCanvas.height - confettiCanvas.height;
-    this.size = 8 + Math.random() * 8;
+    this.size = 6 + Math.random() * 6;
     this.speedY = 1 + Math.random() * 3;
     this.speedX = (Math.random() - 0.5) * 2;
     this.angle = Math.random() * 2 * Math.PI;
@@ -613,7 +608,7 @@ Now I will implement these features and provide the fully updated modern birthda
     this.y += this.speedY;
     this.x += this.speedX;
     this.angle += this.spin;
-    if(this.y > confettiCanvas.height){
+    if (this.y > confettiCanvas.height) {
       this.y = -this.size;
       this.x = Math.random() * confettiCanvas.width;
     }
@@ -626,19 +621,26 @@ Now I will implement these features and provide the fully updated modern birthda
     ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size/3);
     ctx.restore();
   };
-  function triggerConfetti(){
-    if(confettiPieces.length === 0){
-      for(let i=0; i<150; i++){
+  function launchConfetti() {
+    if (animationRunning) return;
+    if (confettiPieces.length === 0) {
+      for (let i=0; i<150; i++) {
         confettiPieces.push(new ConfettiPiece());
       }
     }
-    launchConfetti = true;
+    animationRunning = true;
+    animateConfetti();
+    // Stop confetti after 6 seconds
+    setTimeout(() => {
+      animationRunning = false;
+      confettiPieces = [];
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }, 6000);
   }
 
-  let launchConfetti = false;
-  function animateConfetti(){
-    if(!launchConfetti) return;
-    ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+  function animateConfetti() {
+    if (!animationRunning) return;
+    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
     confettiPieces.forEach(p => {
       p.update();
       p.draw();
@@ -646,20 +648,18 @@ Now I will implement these features and provide the fully updated modern birthda
     requestAnimationFrame(animateConfetti);
   }
 
-  animateConfetti();
-
-  // Resize canvas full screen
-  function resizeCanvas(){
+  // Resize confetti canvas to full screen
+  function resizeCanvas() {
     confettiCanvas.width = window.innerWidth;
     confettiCanvas.height = window.innerHeight;
   }
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  // Light/Dark toggle
+  // Light/Dark mode toggle
   const themeToggle = document.getElementById('themeToggle');
-  function setTheme(dark){
-    if(dark){
+  function setTheme(dark) {
+    if (dark) {
       document.body.classList.add('dark');
       themeToggle.setAttribute('aria-checked', 'true');
     } else {
@@ -671,9 +671,9 @@ Now I will implement these features and provide the fully updated modern birthda
   themeToggle.addEventListener('change', () => {
     setTheme(themeToggle.checked);
   });
-  // Load theme preference
+  // Load saved theme or set default
   const savedTheme = localStorage.getItem('themeDark');
-  if(savedTheme === 'true'){
+  if (savedTheme === 'true') {
     themeToggle.checked = true;
     setTheme(true);
   } else {
@@ -682,6 +682,7 @@ Now I will implement these features and provide the fully updated modern birthda
 
   // Background music control
   const audioControl = document.getElementById('audioControl');
+  // Soft romantic loop audio from pixabay (royalty free)
   const audio = new Audio('https://cdn.pixabay.com/download/audio/2021/10/18/audio_8e136cf6db.mp3?filename=calm-ambience-11008.mp3');
   audio.loop = true;
   audio.volume = 0.15;

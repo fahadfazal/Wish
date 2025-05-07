@@ -1,197 +1,384 @@
+
+I will enhance the birthday wish website to make it more unique by adding:
+
+- A custom handwritten-style font for a more personal and unique feel
+- A dynamic starry background with subtle twinkling stars for a magical atmosphere
+- Animated sparkling effects around the main headline
+- An elegant animated rose that gently sways to symbolize love and romance
+- Smooth scroll-like confetti bursts on button click with colorful hearts
+- Refined layout with subtle layered backgrounds and more distinct color palette
+- Keep all mobile responsive requirements intact with a max width of 350px and height of 600px without scrolling
+
+I will include all these enhancements in a single fully-contained HTML file with inline CSS and JS, so it is easy to open and view anywhere.
+
+Now I will proceed to create this more unique birthday wish website.
+
+
+`birthday_wish_for_wife.html`
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday My Love</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://cdn.pixabay.com/photo/2017/08/30/07/52/birthday-2690244_1280.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #333;
-      text-align: center;
-      animation: fadeIn 2s ease-in;
-      overflow-x: hidden;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Happy Birthday, My Love!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&display=swap');
+
+  /* Reset & base */
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 100%);
+    font-family: 'Sacramento', cursive;
+    color: #ffd9e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+
+  /* Starfield background */
+  #starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+  }
+  @keyframes twinkle {
+    from {opacity: 0.3;}
+    to {opacity: 1;}
+  }
+
+  /* Container */
+  .container {
+    position: relative;
+    max-width: 350px;
+    max-height: 600px;
+    width: 90vw;
+    height: 90vh;
+    background: linear-gradient(145deg, rgba(238, 150, 182, 0.25), rgba(175, 70, 130, 0.8));
+    border-radius: 35px;
+    box-shadow:
+      inset 0 0 15px 5px rgba(255, 218, 230, 0.4),
+      0 15px 30px rgba(175, 70, 130, 0.7);
+    padding: 30px 25px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  /* Main Title with sparkling effect */
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    margin-bottom: 0.2em;
+    color: #ffcdfd;
+    text-shadow:
+      0 0 5px #ff7cba,
+      0 0 10px #ff4eab,
+      0 0 15px #ff2d95,
+      0 0 30px #fa0887;
+    position: relative;
+  }
+  /* Sparkles */
+  h1::before, h1::after {
+    content: '✦';
+    position: absolute;
+    color: #fff7ff;
+    font-size: 2rem;
+    animation: sparkle 2.5s ease-in-out infinite;
+    user-select: none;
+  }
+  h1::before {
+    left: -1.2em;
+    top: 0.1em;
+    animation-delay: 0s;
+  }
+  h1::after {
+    right: -1.3em;
+    top: 0.3em;
+    animation-delay: 1.2s;
+  }
+  @keyframes sparkle {
+    0%, 100% {opacity: 0;}
+    50% {opacity: 1;}
+  }
+
+  /* Subtitle */
+  h2 {
+    font-family: 'Sacramento', cursive;
+    font-size: 1.6rem;
+    margin: 0 0 20px 0;
+    letter-spacing: 1px;
+    color: #ffd9e8cc;
+    filter: drop-shadow(0 0 2px #ff4eab);
+  }
+
+  /* Message paragraph */
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: #ffd9e8dd;
+    margin-bottom: 50px;
+    user-select: text;
+  }
+
+  /* Rose SVG container with sway animation */
+  .rose-container {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 90px;
+    height: 150px;
+    filter: drop-shadow(0 2px 4px rgba(255, 20, 80, 0.6));
+    animation: sway 4s ease-in-out infinite;
+    cursor: default;
+    user-select: none;
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(5deg); }
+    50% { transform: rotate(-7deg); }
+  }
+
+  /* Show more button styling */
+  button {
+    background: linear-gradient(135deg, #ff4eab, #fa0887);
+    border: none;
+    border-radius: 28px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 12px 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(250, 8, 135, 0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+    outline: none;
+    filter: drop-shadow(0 0 6px #fa0887);
+  }
+  button:hover, button:focus {
+    background: linear-gradient(135deg, #ff78c5, #ff37a4);
+    box-shadow: 0 8px 20px rgba(255, 55, 164, 1);
+  }
+
+  /* Additional message */
+  #moreText {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: #ffd9e8cc;
+    margin-top: -40px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    display: none;
+  }
+
+  /* Hearts confetti */
+  .confetti-heart {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    background-color: #ff2d95;
+    transform: rotate(-45deg);
+    border-radius: 4px 4px 0 0;
+    pointer-events:none;
+    opacity: 0;
+    animation: confetti-fall 3s forwards ease-out;
+    z-index: 10;
+  }
+  .confetti-heart:before,
+  .confetti-heart:after {
+    content: "";
+    position: absolute;
+    background-color: #ff2d95;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  }
+  .confetti-heart:before {
+    top: -8px;
+    left: 0;
+  }
+  .confetti-heart:after {
+    top: 0;
+    left: 8px;
+  }
+  @keyframes confetti-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(-45deg) scale(1);
     }
-    header {
-      padding: 50px 20px;
-      background: rgba(255, 240, 245, 0.85);
-      border-bottom: 2px dashed #f78fb3;
-      animation: slideIn 1s ease-in;
+    100% {
+      opacity: 0;
+      transform: translateY(350px) rotate(270deg) scale(0.2);
     }
-    h1 {
-      font-size: 3.5rem;
-      color: #ff6b81;
-      text-shadow: 3px 3px #ffc0cb;
+  }
+
+  /* Responsive scaling for smaller screens */
+  @media screen and (max-width: 350px) {
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.2rem; }
+    p { font-size: 1rem; }
+    .rose-container {
+      width: 65px;
+      height: 110px;
+      bottom: 15px;
+      right: 15px;
     }
-    p {
-      font-size: 1.5rem;
-      max-width: 700px;
-      margin: 20px auto;
-    }
-    .poem {
-      font-style: italic;
-      color: #6c5ce7;
-      font-size: 1.2rem;
-      margin: 30px 0;
-      animation: fadeIn 2s ease-in;
-      background-color: rgba(255,255,255,0.7);
-      padding: 15px;
-      border-radius: 15px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .love-letter {
-      font-size: 1.5rem;
-      color: #6c5ce7;
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
-      animation: type 4s steps(50) 1s forwards;
-      margin: 30px auto;
-      background-color: rgba(255,255,255,0.7);
-      padding: 15px;
-      border-radius: 15px;
-      max-width: 700px;
-    }
-    footer {
-      padding: 20px;
+    button {
       font-size: 1rem;
-      color: #555;
-      background-color: rgba(255,255,255,0.8);
+      padding: 10px 20px;
     }
-    .carousel {
-      margin: 30px auto;
-      max-width: 500px;
-      font-size: 1.3rem;
-      color: #d63031;
-      background-color: rgba(255,240,245,0.85);
-      border-radius: 20px;
-      padding: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .reveal-button {
-      background-color: #e84393;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      margin: 20px;
-      transition: background-color 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .reveal-button:hover {
-      background-color: #d63031;
-    }
-    .reveal-message {
-      font-size: 1.5rem;
-      color: #2d3436;
-      margin-top: 20px;
-      display: none;
-      animation: fadeIn 2s ease-in;
-    }
-    .heart {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: red;
-      transform: rotate(45deg);
-      animation: fadeOut 1s forwards;
-    }
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: red;
-      border-radius: 50%;
-    }
-    .heart::before {
-      top: -5px;
-      left: 0;
-    }
-    .heart::after {
-      left: -5px;
-      top: 0;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes type {
-      to { width: 100%; }
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; transform: translateY(-20px); }
-    }
-  </style>
+  }
+
+</style>
 </head>
 <body>
-  <header>
-    <h1>Happy Birthday, Rimsha! ❤️</h1>
-    <p>Every moment with you is a blessing. On your special day, I just want to remind you how deeply I love you. Thank you for being you — kind, beautiful, strong, and the love of my life.</p>
-  </header>
 
-  <section class="poem">
-    <p>"In your eyes, I see my home,</p>
-    <p>In your heart, I find my peace,</p>
-    <p>With every smile, my world feels bright,</p>
-    <p>And in your love, I find my light."</p>
-  </section>
+<canvas id="starfield"></canvas>
 
-  <section class="love-letter">
-    <p>To the love of my life, you are everything to me. I cherish every moment we've shared, and I can't wait to create more memories with you. I love you more than words can say. 💖</p>
-  </section>
+<div class="container" role="main" aria-label="Birthday wish for wife">
+  <h1 tabindex="0" aria-label="Happy Birthday, My Love!">Happy Birthday, My Love!</h1>
+  <h2 tabindex="0">To the Most Wonderful Wife</h2>
+  <p tabindex="0">
+    Every moment with you feels like magic. On this special day, I celebrate the love, warmth, and joy you bring into my life.<br />
+    You are my forever muse, my heart’s delight.
+  </p>
+  <button id="showMoreBtn" aria-expanded="false" aria-controls="moreText" aria-label="Show more birthday message">Show More</button>
+  <p id="moreText" tabindex="0" aria-live="polite" aria-hidden="true">
+    Thank you for coloring my world with endless love.<br>
+    I cherish you every day and promise to keep making beautiful memories together.<br>
+    Happy Birthday, my heart's queen! ❤️
+  </p>
+</div>
 
-  <section class="carousel">
-    <p id="carousel-text">You are my sunshine on cloudy days 🌞</p>
-  </section>
+<div class="rose-container" aria-hidden="true" title="Swaying rose illustration" role="img">
+  <svg viewBox="0 0 128 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="roseGradient" x1="64" y1="0" x2="64" y2="256" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#ff2d95" offset="0%" />
+        <stop stop-color="#9d0a55" offset="100%" />
+      </linearGradient>
+      <radialGradient id="highlight" cx="0.5" cy="0.5" r="0.5">
+        <stop stop-color="#fff" stop-opacity="0.8" offset="0%" />
+        <stop stop-color="#fff" stop-opacity="0" offset="100%" />
+      </radialGradient>
+    </defs>
+    <ellipse cx="64" cy="48" rx="50" ry="48" fill="url(#roseGradient)" />
+    <path fill="url(#highlight)" d="M15,20c15,10 55,10 90,10 0,0 -50,40 -90,10z"/>
+    <path fill="#580438" d="M0 230 Q70 120 128 250 L108 114 Q30 270 0 230z" />
+  </svg>
+</div>
 
-  <button class="reveal-button" onclick="document.getElementById('reveal').style.display='block'">Click for a Surprise</button>
-  <div id="reveal" class="reveal-message">My heart belongs to you — today, tomorrow, and forever. 💝</div>
+<script>
+  // Starfield effect creation
+  const starfield = document.getElementById('starfield');
+  const ctx = starfield.getContext('2d');
+  let width, height;
+  let stars = [];
 
-  <footer>
-    <p>Forever yours</p>
-  </footer>
+  function initStarfield() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    starfield.width = width;
+    starfield.height = height;
+    stars = [];
+    for (let i = 0; i < 120; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.2 + 0.3,
+        alpha: Math.random(),
+        alphaChange: 0.005 + Math.random() * 0.01
+      });
+    }
+  }
 
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/audio/2021/08/09/audio_68c5b8c2b4.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    const messages = [
-      "You are my sunshine on cloudy days 🌞",
-      "Your laughter is my favorite melody 🎶",
-      "Every day with you is a gift 🎁",
-      "You complete me 💖",
-      "I love you more than words can say 💕"
-    ];
-    let index = 0;
-    setInterval(() => {
-      index = (index + 1) % messages.length;
-      document.getElementById("carousel-text").textContent = messages[index];
-    }, 3000);
-
-    document.addEventListener('mousemove', function(e) {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = e.pageX + 'px';
-      heart.style.top = e.pageY + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1000);
+  function drawStarfield() {
+    ctx.clearRect(0, 0, width, height);
+    stars.forEach(star => {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${star.alpha.toFixed(2)})`;
+      ctx.shadowColor = '#fff';
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      star.alpha += star.alphaChange;
+      if (star.alpha <= 0 || star.alpha >= 1) {
+        star.alphaChange = -star.alphaChange;
+      }
     });
-  </script>
+    requestAnimationFrame(drawStarfield);
+  }
+
+  initStarfield();
+  drawStarfield();
+  window.addEventListener('resize', () => {
+    initStarfield();
+  });
+
+  // Show more toggle button
+  const showMoreBtn = document.getElementById('showMoreBtn');
+  const moreText = document.getElementById('moreText');
+  showMoreBtn.addEventListener('click', () => {
+    const visible = moreText.style.display === 'block';
+    if (visible) {
+      moreText.style.display = 'none';
+      showMoreBtn.textContent = 'Show More';
+      showMoreBtn.setAttribute('aria-expanded', 'false');
+      moreText.setAttribute('aria-hidden', 'true');
+    } else {
+      moreText.style.display = 'block';
+      showMoreBtn.textContent = 'Show Less';
+      showMoreBtn.setAttribute('aria-expanded', 'true');
+      moreText.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  // Confetti hearts on button click
+  function createConfettiHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('confetti-heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.top = '-20px';
+    heart.style.backgroundColor = randomColor();
+    heart.style.animationDuration = (Math.random() * 1 + 2) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 3000);
+  }
+  function randomColor() {
+    const colors = ['#ff2d95', '#ff5aad', '#ff78c5', '#ff3ec9', '#ff1fc1'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  showMoreBtn.addEventListener('click', () => {
+    // Emit 15 hearts confetti bursts per toggle
+    for (let i = 0; i < 15; i++) {
+      setTimeout(createConfettiHeart, i * 100);
+    }
+  });
+</script>
+
 </body>
 </html>
+</content>
+</create_file>
+```

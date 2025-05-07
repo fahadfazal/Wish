@@ -28,8 +28,6 @@
     background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
     color: #e1e1e1;
   }
-
-  /* Floating hearts - background */
   .floating-heart {
     position: fixed;
     color: #ff2d95cc;
@@ -51,8 +49,6 @@
       opacity: 0;
     }
   }
-
-  /* Container with glow */
   .container {
     width: 350px;
     height: 600px;
@@ -77,8 +73,6 @@
       0 0 15px #6495ffaa,
       0 8px 24px rgba(76, 161, 175, 0.5);
   }
-
-  /* Floating subtle shapes */
   .shape {
     position: absolute;
     border-radius: 50%;
@@ -116,8 +110,6 @@
     0%, 100% { transform: translateY(0) translateX(0); }
     50% { transform: translateY(-12px) translateX(8px); }
   }
-
-  /* Headings */
   h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -143,8 +135,6 @@
   body.dark h2 {
     color: #82c7f9;
   }
-
-  /* Message */
   p.message {
     font-size: 1.1rem;
     line-height: 1.5;
@@ -157,8 +147,6 @@
   body.dark p.message {
     color: #c8dff9;
   }
-
-  /* Show More button */
   button.toggle-btn {
     background: #FF416C;
     border: none;
@@ -205,8 +193,6 @@
     background: #4a7dc4;
     box-shadow: 0 8px 20px rgba(74, 125, 196, 1);
   }
-
-  /* Additional message */
   #moreText {
     font-size: 1rem;
     color: #6a6a6a;
@@ -231,8 +217,6 @@
   body.dark #moreText::-webkit-scrollbar-thumb {
     background-color: #6495ffbb;
   }
-
-  /* Wish input */
   #wishForm {
     display: flex;
     flex-direction: column;
@@ -301,8 +285,6 @@
     background: linear-gradient(135deg, #74a2e1, #a3c4ff);
     box-shadow: 0 8px 20px rgba(163, 196, 255, 1);
   }
-
-  /* Saved wishes */
   #savedWishes {
     max-height: 110px;
     width: 90%;
@@ -338,8 +320,6 @@
   body.dark #savedWishes::-webkit-scrollbar-thumb {
     background-color: #6495ffbb;
   }
-
-  /* Saved wish like heart */
   .wish-item {
     position: relative;
     padding-right: 28px;
@@ -363,8 +343,6 @@
     outline: 2px solid #ff4eab;
     outline-offset: 2px;
   }
-
-  /* Light/Dark toggle switch */
   .toggle-container {
     display: flex;
     justify-content: flex-end;
@@ -407,8 +385,6 @@
   input:checked + .slider:before {
     transform: translateX(22px);
   }
-
-  /* Confetti canvas */
   #confettiCanvas {
     position: fixed;
     pointer-events: none;
@@ -417,8 +393,6 @@
     height: 100vh;
     z-index: 9999;
   }
-
-  /* Audio control */
   #audioControl {
     position: absolute;
     top: 10px;
@@ -451,8 +425,6 @@
   body.dark #audioControl:hover, body.dark #audioControl:focus {
     background: rgba(255 255 255 / 0.5);
   }
-
-  /* Reset button */
   #resetWishesBtn {
     background: #555;
     border: none;
@@ -472,8 +444,6 @@
     background: #ff416c;
     outline: none;
   }
-
-  /* Responsive */
   @media (max-width: 350px) {
     .container {
       padding: 35px 25px 25px 25px;
@@ -512,64 +482,41 @@
 </style>
 </head>
 <body>
-
-<!-- Floating hearts container -->
 <div id="floatingHearts"></div>
-
-<!-- Confetti canvas -->
 <canvas id="confettiCanvas" aria-hidden="true"></canvas>
-
-<!-- Container -->
 <div class="container" role="main" aria-label="Birthday wish website for Rimsha">
-
-  <!-- Light/Dark toggle -->
   <div class="toggle-container" aria-label="Toggle light or dark color theme">
     <label class="switch" title="Toggle light or dark mode">
       <input type="checkbox" id="themeToggle" aria-checked="false" />
       <span class="slider"></span>
     </label>
   </div>
-
-  <!-- Audio control -->
   <button id="audioControl" aria-pressed="false" aria-label="Toggle background music" title="Toggle background music">▶️</button>
-
-  <!-- Header -->
   <h1 tabindex="0">Happy Birthday, Rimsha!</h1>
   <h2 tabindex="0">To My Wonderful Wife</h2>
-
-  <!-- Main message -->
   <p class="message" tabindex="0">
     You brighten every moment with your love and smile.<br />
     Wishing you endless joy, laughter, and beautiful memories today and always.
   </p>
-
-  <!-- Show More toggle button -->
   <button class="toggle-btn" id="showMoreBtn" aria-expanded="false" aria-controls="moreText" aria-label="Show more birthday message">Show More</button>
-
-  <!-- Extra message -->
   <p id="moreText" tabindex="0" aria-live="polite" aria-hidden="true">
     Thank you for being my inspiration and my heart's true home.<br/>
     I look forward to celebrating many more birthdays together.<br/>
     I love you endlessly! ❤️
   </p>
-
-  <!-- Wish input -->
+  
   <form id="wishForm" aria-label="Send your personal birthday wish">
     <textarea id="wishInput" aria-label="Type your personal wish here" placeholder="Write your special wish here..." rows="3" maxlength="200" required></textarea>
     <button type="submit" id="wishSubmit" aria-label="Send birthday wish">Send Wish</button>
   </form>
 
-  <!-- Reset wishes button -->
   <button id="resetWishesBtn" aria-label="Clear all saved wishes">Clear All Wishes</button>
 
-  <!-- Saved wishes -->
   <div id="savedWishes" aria-live="polite" aria-label="Saved birthday wishes from you">
-    <!-- wishes appear here -->
   </div>
 </div>
 
 <script>
-  // Create floating hearts in background
   const floatingHeartsContainer = document.getElementById('floatingHearts');
   function createFloatingHeart() {
     const heart = document.createElement('div');
@@ -581,17 +528,14 @@
     floatingHeartsContainer.appendChild(heart);
     setTimeout(() => heart.remove(), 15000);
   }
-  // Create hearts continuously
   setInterval(createFloatingHeart, 800);
 
-  // Escape HTML helper
   function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
   }
 
-  // Show More toggle
   const showMoreBtn = document.getElementById('showMoreBtn');
   const moreText = document.getElementById('moreText');
   showMoreBtn.addEventListener('click', () => {
@@ -610,7 +554,6 @@
     }
   });
 
-  // Wish submission and storage
   const wishForm = document.getElementById('wishForm');
   const wishInput = document.getElementById('wishInput');
   const savedWishes = document.getElementById('savedWishes');
@@ -654,7 +597,6 @@
     }
   });
 
-  // Like/unlike functionality for wishes
   function bindWishHearts() {
     const hearts = savedWishes.querySelectorAll('.wish-heart');
     hearts.forEach(heart => {
@@ -681,7 +623,6 @@
 
   loadWishes();
 
-  // Confetti animation using Canvas
   const confettiCanvas = document.getElementById('confettiCanvas');
   const ctx = confettiCanvas.getContext('2d');
   let confettiPieces = [];
@@ -747,7 +688,6 @@
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  // Light/Dark mode toggle
   const themeToggle = document.getElementById('themeToggle');
   function setTheme(dark) {
     if (dark) {
@@ -770,7 +710,6 @@
     setTheme(false);
   }
 
-  // Background music control
   const audioControl = document.getElementById('audioControl');
   const audio = new Audio('https://cdn.pixabay.com/download/audio/2021/10/18/audio_8e136cf6db.mp3?filename=calm-ambience-11008.mp3');
   audio.loop = true;

@@ -99,6 +99,13 @@
   </style>
 </head>
 <body>
+
+  <!-- 🔊 Background Audio -->
+  <audio id="birthdaySong" loop>
+    <source src="songnew1.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
   <div class="container">
     <h1>Happy Birthday Rimsha ❤️</h1>
     <h2>Rimsha ❤️</h2>
@@ -124,12 +131,6 @@
 
   <canvas id="sparkleCanvas" aria-hidden="true"></canvas>
 
-  <!-- 🎵 Background Music -->
-  <audio id="birthdaySong" autoplay loop>
-    <source src="songnew1.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     // Confetti
@@ -139,7 +140,7 @@
       origin: { y: 0.6 }
     });
 
-    // Quotes
+    // Love Quote
     const quotes = [
       "Every love story is beautiful, but ours is my favorite.",
       "I still fall for you every single day.",
@@ -147,17 +148,18 @@
       "In you, I’ve found the love of my life and my closest friend.",
       "My heart is perfect because you are inside."
     ];
-    const quoteElem = document.getElementById('quote');
-    quoteElem.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
 
     // Sparkles
     const sparkleCanvas = document.getElementById('sparkleCanvas');
     const sparkleCtx = sparkleCanvas.getContext('2d');
     let sparkleW, sparkleH;
+
     function resizeSparkleCanvas() {
       sparkleW = sparkleCanvas.width = window.innerWidth;
       sparkleH = sparkleCanvas.height = window.innerHeight;
     }
+
     window.addEventListener('resize', resizeSparkleCanvas);
     resizeSparkleCanvas();
 
@@ -186,7 +188,7 @@
     }
     drawSparkles();
 
-    // Modal
+    // Surprise Modal
     const modal = document.getElementById('surpriseModal');
     function closeModal() {
       modal.style.display = 'none';
@@ -195,16 +197,16 @@
       modal.style.display = 'flex';
     }, 10000);
 
-    // Audio autoplay fallback
-    const audio = document.getElementById('birthdaySong');
-    document.addEventListener('click', () => {
-      audio.play().catch(() => {});
-    }, { once: true });
-    window.addEventListener('load', () => {
+    // 🎵 Play music after 2 seconds
+    setTimeout(() => {
+      const audio = document.getElementById('birthdaySong');
       audio.play().catch(() => {
-        console.log("Autoplay blocked. Waiting for user interaction.");
+        document.addEventListener('click', () => {
+          audio.play();
+        }, { once: true });
       });
-    });
+    }, 2000);
   </script>
+
 </body>
 </html>

@@ -124,6 +124,12 @@
 
   <canvas id="sparkleCanvas" aria-hidden="true"></canvas>
 
+  <!-- 🎵 Background Music -->
+  <audio id="birthdaySong" autoplay loop>
+    <source src="songnew1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     // Confetti
@@ -133,7 +139,7 @@
       origin: { y: 0.6 }
     });
 
-    // Random Love Quotes
+    // Quotes
     const quotes = [
       "Every love story is beautiful, but ours is my favorite.",
       "I still fall for you every single day.",
@@ -144,7 +150,7 @@
     const quoteElem = document.getElementById('quote');
     quoteElem.textContent = quotes[Math.floor(Math.random() * quotes.length)];
 
-    // Sparkle Effect
+    // Sparkles
     const sparkleCanvas = document.getElementById('sparkleCanvas');
     const sparkleCtx = sparkleCanvas.getContext('2d');
     let sparkleW, sparkleH;
@@ -180,7 +186,7 @@
     }
     drawSparkles();
 
-    // Surprise Modal
+    // Modal
     const modal = document.getElementById('surpriseModal');
     function closeModal() {
       modal.style.display = 'none';
@@ -188,6 +194,17 @@
     setTimeout(() => {
       modal.style.display = 'flex';
     }, 10000);
+
+    // Audio autoplay fallback
+    const audio = document.getElementById('birthdaySong');
+    document.addEventListener('click', () => {
+      audio.play().catch(() => {});
+    }, { once: true });
+    window.addEventListener('load', () => {
+      audio.play().catch(() => {
+        console.log("Autoplay blocked. Waiting for user interaction.");
+      });
+    });
   </script>
 </body>
 </html>
